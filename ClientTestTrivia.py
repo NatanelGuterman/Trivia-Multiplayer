@@ -19,7 +19,7 @@ def main():
         server_msg = sock.recv(1024)
         if server_msg.decode() == MESSAGE:
             print("Server sent hello.")
-            sock.sendall(MESSAGE.encode())  # Sending the message.
+            sock.sendall(MESSAGE.encode()) # Sending the message.
         else:
             print("Error has accrued.")
         sock.close()
