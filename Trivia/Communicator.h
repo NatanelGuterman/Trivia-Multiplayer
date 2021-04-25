@@ -2,6 +2,7 @@
 #include <WinSock2.h>
 #include <map>
 #include "IRequestHandler.h"
+#include "LoginRequestHandler.h"
 #include <iostream>
 #include <thread>
 
@@ -24,5 +25,6 @@ private:
 	void bindAndListen();
 	void accept();
 	void handleNewClient(SOCKET socket);
+	void addNewClientToMap(SOCKET socket);
 
 };

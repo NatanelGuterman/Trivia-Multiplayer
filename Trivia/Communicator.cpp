@@ -68,6 +68,17 @@ void Communicator::accept()
 	std::cout << "Client accepted. Server and client can speak" << std::endl;
 
 	// the function that handle the conversation with the client
-	std::thread clientThread(&Communicator::clientHandler, this, client_socket);
+	addNewClientToMap(client_socket);
+	std::thread clientThread(&Communicator::handleNewClient, this, client_socket);
 	clientThread.detach();
+}
+
+void Communicator::handleNewClient(SOCKET socket)
+{
+}
+
+void Communicator::addNewClientToMap(SOCKET socket)
+{
+	LoginRequestHandler* loginRequestHandlerInstance = new LoginRequestHandler();
+	this->m_clients[socket] = loginRequestHandlerInstance;
 }
