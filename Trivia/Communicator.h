@@ -7,11 +7,13 @@ class Communicator
 {
 public:
 	Communicator();
+	~Communicator();
+
 	void startHandleRequests();
 
 private:
 	// Fields
-	SOCKET m_serverSicket;
+	SOCKET m_serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
 
 	// Methods
