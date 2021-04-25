@@ -7,6 +7,7 @@
 #include <thread>
 
 #define MT_SERVER_PORT 2620
+#define HELLO_MSG_SIZE 6
 
 class Communicator
 {

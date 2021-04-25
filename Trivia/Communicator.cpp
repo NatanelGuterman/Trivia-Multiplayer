@@ -75,6 +75,22 @@ void Communicator::accept()
 
 void Communicator::handleNewClient(SOCKET socket)
 {
+	try
+	{
+		std::string welcomeString = "Hello";
+		send(socket, welcomeString.c_str(), welcomeString.size(), 0);  // last parameter: flag. for us will be 0.
+
+		char msgBuffer[HELLO_MSG_SIZE];
+		recv(socket, msgBuffer, 5, 0);
+		msgBuffer[5] = 0;
+		std::cout << "Message from client: " << msgBuffer << std::endl;
+		// Closing the socket (in the level of the TCP protocol)
+		closesocket(socket);
+	}
+	catch (const std::exception& e)
+	{
+		closesocket(socket);
+	}
 }
 
 void Communicator::addNewClientToMap(SOCKET socket)
