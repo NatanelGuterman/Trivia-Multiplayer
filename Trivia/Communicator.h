@@ -6,6 +6,7 @@
 class Communicator
 {
 public:
+	Communicator();
 	void startHandleRequests();
 
 private:
