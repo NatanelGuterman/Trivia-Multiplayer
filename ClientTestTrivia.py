@@ -7,8 +7,8 @@ MESSAGE = 'Hello'
 
 
 def main():
-    server_port = input("Please, enter server port: ")
-    if not MIN_LEGAL_PORT >= server_port >= MAX_LEGAL_PORT:
+    server_port = int(input("Please, enter server port: "))
+    if not MIN_LEGAL_PORT <= server_port <= MAX_LEGAL_PORT:
         print("Illegal port, only between 1024 - 65535!")
     else:
         # Create a TCP/IP socket
