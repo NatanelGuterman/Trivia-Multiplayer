@@ -1,7 +1,6 @@
 #pragma once
 #include <WinSock2.h>
 #include <map>
-#include "IRequestHandler.h"
 #include "LoginRequestHandler.h"
 #include <iostream>
 #include <thread>
@@ -16,6 +15,7 @@ public:
 	~Communicator();
 
 	void startHandleRequests();
+
 
 private:
 	// Fields

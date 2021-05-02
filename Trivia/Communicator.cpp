@@ -50,7 +50,7 @@ void Communicator::bindAndListen()
 		// the main thread is only accepting clients 
 		// and add then to the list of handlers
 		std::cout << "Waiting for client connection request" << std::endl;
-		//accept();
+		accept();
 	}
 }
 
