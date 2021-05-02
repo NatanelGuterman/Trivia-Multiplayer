@@ -30,6 +30,8 @@ void Communicator::startHandleRequests()
 void Communicator::bindAndListen()
 {
 	struct sockaddr_in sa = { 0 };
+	std::string msgServer = "";
+
 
 	sa.sin_port = htons(MT_SERVER_PORT); // port that server will listen for
 	sa.sin_family = AF_INET;   // must be AF_INET
@@ -44,11 +46,14 @@ void Communicator::bindAndListen()
 	if (listen(this->m_serverSocket, SOMAXCONN) == SOCKET_ERROR)
 		throw std::exception(__FUNCTION__ " - listen");
 	std::cout << "Listening on port " << MT_SERVER_PORT << std::endl;
-
+	std::thread inputThread(&Communicator::waitingForServerInput, this, msgServer);
+	inputThread.detach();
 	while (true)
 	{
 		// the main thread is only accepting clients 
 		// and add then to the list of handlers
+
+
 		std::cout << "Waiting for client connection request" << std::endl;
 		accept();
 	}
@@ -62,8 +67,15 @@ void Communicator::accept()
 	// this accepts the client and create a specific socket from server to this client
 	SOCKET client_socket = ::accept(this->m_serverSocket, NULL, NULL);
 
-	if (client_socket == INVALID_SOCKET)
+	if (this->_flagClosedSocket)
+	{
+		throw std::exception("Server Exited!");
+	}
+
+	if (client_socket == INVALID_SOCKET) {
 		throw std::exception(__FUNCTION__);
+
+	}
 
 	std::cout << "Client accepted. Server and client can speak" << std::endl;
 
@@ -85,11 +97,11 @@ void Communicator::handleNewClient(SOCKET socket)
 		msgBuffer[5] = 0;
 		std::cout << "Message from client: " << msgBuffer << std::endl;
 		// Closing the socket (in the level of the TCP protocol)
-		closesocket(socket);
 	}
 	catch (const std::exception& e)
 	{
 		closesocket(socket);
+
 	}
 }
 
@@ -97,4 +109,15 @@ void Communicator::addNewClientToMap(SOCKET socket)
 {
 	LoginRequestHandler* loginRequestHandlerInstance = new LoginRequestHandler();
 	this->m_clients[socket] = loginRequestHandlerInstance;
+}
+
+
+void Communicator::waitingForServerInput(std::string msgServer)
+{
+	while (msgServer != "Exit")
+	{
+		std::getline(std::cin, msgServer);
+	}
+	closesocket(this->m_serverSocket);
+	_flagClosedSocket = true;
 }
