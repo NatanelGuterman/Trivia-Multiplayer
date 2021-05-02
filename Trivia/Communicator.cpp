@@ -114,7 +114,7 @@ void Communicator::addNewClientToMap(SOCKET socket)
 
 void Communicator::waitingForServerInput(std::string msgServer)
 {
-	while (msgServer != "Exit")
+	while (msgServer != "EXIT")
 	{
 		std::getline(std::cin, msgServer);
 	}
