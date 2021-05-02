@@ -10,6 +10,7 @@
 
 #define MT_SERVER_PORT 2620
 #define HELLO_MSG_SIZE 6
+#define EXIT_MSG "EXIT"
 
 class Communicator
 {
