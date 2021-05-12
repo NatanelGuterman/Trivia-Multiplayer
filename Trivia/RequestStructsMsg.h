@@ -4,6 +4,9 @@
 #include <vector>
 #include "IRequestHandler.h"
 
+#define SIGNUP_CODE 201
+#define LOGIN_CODE 202
+
 //std::time_t result = std::time(nullptr);
 //std::cout << std::ctime(&result);
 struct LoginRequest
