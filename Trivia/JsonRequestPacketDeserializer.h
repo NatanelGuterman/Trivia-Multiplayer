@@ -11,6 +11,7 @@
 #define FIND_MAIL 5
 #define COMMA ","
 #define END_OF_JSON "}"
+#define COLON ":"
 
 class JsonRequestPacketDeserializer
 {

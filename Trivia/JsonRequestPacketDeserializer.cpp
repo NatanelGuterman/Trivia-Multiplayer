@@ -26,7 +26,7 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 		data += (char)std::stoi(tempCharacter, 0, 2);
 		tempCharacter = "";
 	}
-	LoginRequest result = { data.substr(data.find(":") + ADD_FIND_USERNAME, data.find(",") - data.find(":") - SUB_FIND_USERNAME), data.substr(data.find(",") + ADD_FIND_PASSWORD, data.length() - data.find(",") - SUB_FIND_PASSWORD) };
+	LoginRequest result = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, data.find(COMMA) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.length() - data.find(COMMA) - SUB_FIND_PASSWORD) };
 	return result;
 }
 
@@ -54,6 +54,6 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vecto
 		data += (char)std::stoi(tempCharacter, 0, 2);
 		tempCharacter = "";
 	}
-	SignupRequest request = { data.substr(data.find(":") + ADD_FIND_USERNAME, data.find(",") - data.find(":") - SUB_FIND_USERNAME), data.substr(data.find(",") + ADD_FIND_PASSWORD, data.find(MAIL) - data.find(COMMA) - SUB_FIND_PASSWORD - 1), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - data.find(MAIL) - FIND_MAIL) };
+	SignupRequest request = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, data.find(COMMA) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.find(MAIL) - data.find(COMMA) - SUB_FIND_PASSWORD - 1), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - data.find(MAIL) - FIND_MAIL) };
 	return request;
 }
