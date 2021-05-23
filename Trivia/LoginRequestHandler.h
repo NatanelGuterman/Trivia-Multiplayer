@@ -4,7 +4,7 @@
 class LoginRequestHandler : public IRequestHandler
 {
 public:
-	bool isRequestRelevant(RequestInfo request);
-	RequestResult handleRequest(RequestInfo request);
+	static bool isRequestRelevant(RequestInfo request);
+	static RequestResult handleRequest(RequestInfo request);
 
 };

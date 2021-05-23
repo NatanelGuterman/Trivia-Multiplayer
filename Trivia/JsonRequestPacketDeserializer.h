@@ -1,5 +1,12 @@
 #pragma once
 #include "RequestStructsMsg.h"
+#include <string>
+#define BYTE 8
+#define NUMBER_OF_DATA_BYTES 4
+#define ADD_FIND_USERNAME 2
+#define SUB_FIND_USERNAME 3
+#define ADD_FIND_PASSWORD 11
+#define SUB_FIND_PASSWORD 12
 
 class JsonRequestPacketDeserializer
 {
