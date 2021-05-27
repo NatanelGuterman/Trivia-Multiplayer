@@ -13,16 +13,10 @@ int main()
 	try
 	{
 
-		// NOTICE at the end of this block the WSA will be closed 
-		//WSAInitializer wsa_init;
-		//Server server;
-		//server.run();
-
-		ErrorResponse r = { "WOHO" };
-		JsonResponsePacketSerializer::serializeResponse(r);
-		
-
-
+		//NOTICE at the end of this block the WSA will be closed 
+		WSAInitializer wsa_init;
+		Server server;
+		server.run();
 
 	}
 	catch (const std::exception& e)
