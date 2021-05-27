@@ -12,6 +12,7 @@
 #define COMMA ","
 #define END_OF_JSON "}"
 #define COLON ":"
+#define BINARY 2
 
 class JsonRequestPacketDeserializer
 {
