@@ -22,5 +22,6 @@
     <ClInclude Include="Server.h" />
     <ClInclude Include="WSAInitializer.h" />
     <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="IDataBase.h" />
   </ItemGroup>
 </Project>
