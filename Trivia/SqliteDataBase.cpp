@@ -1,8 +1,11 @@
 #include "SqliteDataBase.h"
 #include "sqlite3.h"
 
-bool exists = false;
+bool flag = false;
+std::string temp = "";
+
 int callback_userExists(void* data, int argc, char** argv, char** azColName);
+int callback_passwordMatch(void* data, int argc, char** argv, char** azColName);
 
 bool SqliteDataBase::doesUserExist(std::string username)
 {
@@ -15,12 +18,21 @@ bool SqliteDataBase::doesUserExist(std::string username)
     sqlQuery(query.c_str(), error, callback_userExists);
     sqlQuery(SQL_COMMIT, SQL_COMMIT_ERROR, nullptr);
 
-    return exists;
+    return flag;
 }
 
-bool SqliteDataBase::doesPasswordMatch(std::string password, std::string repeat)
+bool SqliteDataBase::doesPasswordMatch(std::string username, std::string password)
 {
-    return false;
+    std::string query = "", error = "";
+    sqlQuery(SQL_BEGIN, SQL_BEGIN_ERROR, nullptr);
+
+    query = "SELECT Password FROM USERS WHERE Username=" + username + ";";
+    error = "ERROR: doesPasswordMatch() - Couldn't select from USERS.";
+
+    sqlQuery(query.c_str(), error, callback_passwordMatch);
+    sqlQuery(SQL_COMMIT, SQL_COMMIT_ERROR, nullptr);
+    
+    return password == temp;
 }
 
 void SqliteDataBase::addNewUser(std::string username, std::string password, std::string mail)
@@ -40,6 +52,16 @@ void SqliteDataBase::sqlQuery(const char* query, std::string error, int(*ptr)(vo
 
 int callback_userExists(void* data, int argc, char** argv, char** azColName)
 {
-    exists = (argc == 0 ? false : true);
+    flag = (argc == 0 ? false : true);
+    return 0;
+}
+
+int callback_passwordMatch(void* data, int argc, char** argv, char** azColName)
+{
+    temp = "";
+    if (argc == 1)
+    {
+        temp = azColName[0];
+    }
     return 0;
 }

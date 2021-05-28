@@ -12,7 +12,7 @@ class SqliteDataBase : IDataBase
 {
 public:
 	virtual bool doesUserExist(std::string username);
-	virtual bool doesPasswordMatch(std::string password, std::string repeat);
+	virtual bool doesPasswordMatch(std::string username, std::string password);
 	virtual void addNewUser(std::string username, std::string password, std::string mail);
 
 private:
