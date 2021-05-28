@@ -37,6 +37,14 @@ bool SqliteDataBase::doesPasswordMatch(std::string username, std::string passwor
 
 void SqliteDataBase::addNewUser(std::string username, std::string password, std::string mail)
 {
+    std::string query = "", error = "";
+    sqlQuery(SQL_BEGIN, SQL_BEGIN_ERROR, nullptr);
+
+    query = "INSERT INTO USERS (Username, Password, Mail) VALUES(" + username + ", \"" + password + "\", \"" + mail + ");";
+    error = "ERROR: addNewUser() - Couldn't insert into ALBUMS.";
+
+    sqlQuery(query.c_str(), error, nullptr);
+    sqlQuery(SQL_COMMIT, SQL_COMMIT_ERROR, nullptr);
 }
 
 // Helper mehtod.
@@ -58,10 +66,6 @@ int callback_userExists(void* data, int argc, char** argv, char** azColName)
 
 int callback_passwordMatch(void* data, int argc, char** argv, char** azColName)
 {
-    temp = "";
-    if (argc == 1)
-    {
-        temp = azColName[0];
-    }
+    temp = (argc == 1 ? azColName[0] : "");
     return 0;
 }
