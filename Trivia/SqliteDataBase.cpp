@@ -7,6 +7,12 @@ std::string temp = "";
 int callback_userExists(void* data, int argc, char** argv, char** azColName);
 int callback_passwordMatch(void* data, int argc, char** argv, char** azColName);
 
+/*
+This function checks if the user exists by it's username.
+input: std::string username --> The username.
+output: bool flag --> true if exists, false if not.
+*/
+
 bool SqliteDataBase::doesUserExist(std::string username)
 {
     std::string query = "", error = "";
@@ -21,6 +27,13 @@ bool SqliteDataBase::doesUserExist(std::string username)
     return flag;
 }
 
+/*
+This function checks if the password matches the username.
+input: std::string username --> The username.
+       std::string password --> The password.
+output: bool flag --> true if exists, false if not.
+*/
+
 bool SqliteDataBase::doesPasswordMatch(std::string username, std::string password)
 {
     std::string query = "", error = "";
@@ -34,6 +47,14 @@ bool SqliteDataBase::doesPasswordMatch(std::string username, std::string passwor
     
     return password == temp;
 }
+
+/*
+This function adds a new user to the DB.
+input: std::string username --> The username.
+       std::string password --> The password.
+       std::string mail --> The mail address.
+output: None.
+*/
 
 void SqliteDataBase::addNewUser(std::string username, std::string password, std::string mail)
 {
@@ -58,6 +79,7 @@ void SqliteDataBase::sqlQuery(const char* query, std::string error, int(*ptr)(vo
     }
 }
 
+// CALLBACK FUNCTIONS
 int callback_userExists(void* data, int argc, char** argv, char** azColName)
 {
     flag = (argc == 0 ? false : true);

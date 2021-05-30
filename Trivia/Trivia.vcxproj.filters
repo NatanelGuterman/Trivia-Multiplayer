@@ -10,6 +10,8 @@
     <ClCompile Include="WSAInitializer.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="SqliteDataBase.cpp" />
+    <ClCompile Include="LoggedUser.cpp" />
+    <ClCompile Include="LoginManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\..\..\Downloads\json.hpp" />
@@ -25,5 +27,7 @@
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="IDataBase.h" />
     <ClInclude Include="SqliteDataBase.h" />
+    <ClInclude Include="LoginManager.h" />
+    <ClInclude Include="LoggedUser.h" />
   </ItemGroup>
 </Project>

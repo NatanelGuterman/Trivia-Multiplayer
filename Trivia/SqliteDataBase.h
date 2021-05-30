@@ -1,6 +1,7 @@
 #pragma once
 #include "IDataBase.h"
 #include <iostream>
+#include "sqlite3.h"
 
 #define SQL_BEGIN "BEGIN;"
 #define SQL_COMMIT "COMMIT;"
