@@ -2,15 +2,21 @@
 #include <WinSock2.h>
 #include <map>
 #include "LoginRequestHandler.h"
+#include "JsonRequestPacketDeserializer.h"
+#include "JsonResponsePacketSerializer.h"
 #include <iostream>
 #include <thread>
 #include <string>
+#include <vector>
 
 
 
 #define MT_SERVER_PORT 2620
-#define HELLO_MSG_SIZE 6
 #define EXIT_MSG "EXIT"
+#define MIN_BUFFER_SIZE 41
+#define BINARY 2
+#define BYTE_SIZE 8
+#define BYTE_MSG_SIZE 4
 
 class Communicator
 {

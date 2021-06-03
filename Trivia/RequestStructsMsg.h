@@ -4,9 +4,6 @@
 #include <vector>
 #include "IRequestHandler.h"
 
-#define SIGNUP_CODE 201
-#define LOGIN_CODE 202
-
 struct LoginRequest
 {
 	std::string username;
