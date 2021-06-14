@@ -10,7 +10,7 @@
 std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(ErrorResponse errResponse)
 {
     nlohmann::json errorResponseJson = errResponse;
-    return createBufferFromJson(errorResponseJson, ERROR_RESPONSE_CODE);
+    return createBufferFromJson(errorResponseJson, ERROR_CODE);
 }
 
 /*
@@ -23,7 +23,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Error
 std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LoginResponse loginResponse)
 {
     nlohmann::json loginResponseJson = loginResponse;
-    return createBufferFromJson(loginResponseJson, LOGIN_RESPONSE_CODE);
+    return createBufferFromJson(loginResponseJson, LOGIN_CODE);
 }
 
 /*
@@ -36,7 +36,7 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Login
 std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(SignupResponse SignupResponse)
 {
     nlohmann::json signupResponseJson = SignupResponse;
-    return createBufferFromJson(signupResponseJson, SIGNUP_RESPONSE_CODE);
+    return createBufferFromJson(signupResponseJson, SIGNUP_CODE);
 }
 
 /*
@@ -93,10 +93,12 @@ std::vector<unsigned char> JsonResponsePacketSerializer::createBufferFromJson(nl
     std::string messageToClient = "";
     std::string messageSize = "";
 
-    messageSize = std::bitset<BYTE_SIZE * AMOUNT_OF_BYTES>(messageToClient.length()).to_string();
+    messageToClient = removeUnneededCharacters(ResponseJson.dump());
+    messageSize = std::bitset<BYTE_SIZE* AMOUNT_OF_BYTES>(messageToClient.length()).to_string();
+    messageToClient = turnStringIntoBinary(messageToClient);
+    std::cout << messageSize << std::endl;
     buffer.insert(buffer.end(), code.begin(), code.end());
     buffer.insert(buffer.end(), messageSize.begin(), messageSize.end());
-    messageToClient = turnStringIntoBinary(removeUnneededCharacters(ResponseJson.dump()));
     buffer.insert(buffer.end(), messageToClient.begin(), messageToClient.end());
     return buffer;
 }
