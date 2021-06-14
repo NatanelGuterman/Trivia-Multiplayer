@@ -3,10 +3,7 @@
 #include <ctime>
 #include <vector>
 #include "IRequestHandler.h"
-
-#define SIGNUP_CODE 201
-#define LOGIN_CODE 202
-
+class IRequestHandler;
 struct LoginRequest
 {
 	std::string username;
@@ -25,10 +22,11 @@ struct RequestInfo
 	int requestId;
 	std::time_t receivalTime;
 	std::vector<unsigned char> buffer;
-}typedef RequestInfo;
+} typedef RequestInfo;
+
 
 struct RequestResult
 {
 	std::vector<unsigned char> buffer;
 	IRequestHandler* newHandler;
-}typedef RequestResult;
+} typedef RequestResult;

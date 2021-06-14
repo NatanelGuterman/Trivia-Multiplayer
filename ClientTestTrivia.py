@@ -1,9 +1,14 @@
 import socket
+import json
 
 MIN_LEGAL_PORT = 1024
 MAX_LEGAL_PORT = 65535
 SERVER_IP = '127.0.0.1'
 MESSAGE = 'Hello'
+json_login = {
+  "username": "user1",
+  "password": "1234"
+}
 
 
 def main():
@@ -16,12 +21,9 @@ def main():
         # Connecting to remote computer server_port
         server_address = (SERVER_IP, server_port)
         sock.connect(server_address)
+        sock.sendall(json_login.dump().encode())  # Sending the message.
         server_msg = sock.recv(1024)
-        if server_msg.decode() == MESSAGE:
-            print("Server sent hello.")
-            sock.sendall(MESSAGE.encode()) # Sending the message.
-        else:
-            print("Error has accrued.")
+        print(server_msg.decode())
         sock.close()
 
 
