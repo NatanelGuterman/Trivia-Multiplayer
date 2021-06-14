@@ -4,18 +4,10 @@
 #include <bitset>
 #include <algorithm>
 #include "ResponseStructsMsg.h"
-#include "json.hpp"
 
-enum RESPONSE_CODES
-{
-	LOGIN_RESPONSE_CODE = 201,
-	SIGNUP_RESPONSE_CODE,
-	ERROR_RESPONSE_CODE
-};
 #define ERASE_UNDERSCORE erase(1, 2) //earse underscore from json string representation
 #define BYTE_SIZE 8
 #define AMOUNT_OF_BYTES 4
-
 
 class JsonResponsePacketSerializer
 {

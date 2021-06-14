@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "json.hpp"
+#include "EnumCodes.h"
 
 typedef struct LoginResponse
 {

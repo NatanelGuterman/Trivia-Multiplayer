@@ -1,6 +1,8 @@
 #pragma once
 #include "RequestStructsMsg.h"
 #include <string>
+#include <bitset>
+
 #define BYTE 8
 #define NUMBER_OF_DATA_BYTES 4
 #define ADD_FIND_USERNAME 2

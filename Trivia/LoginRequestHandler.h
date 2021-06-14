@@ -1,10 +1,13 @@
 #pragma once
-#include "RequestStructsMsg.h"
+#include "JsonRequestPacketDeserializer.h"
+#include "JsonResponsePacketSerializer.h"
 
-class LoginRequestHandler : public IRequestHandler
+#define OK_STATUS 1
+
+class LoginRequestHandler: public IRequestHandler
 {
 public:
-	static bool isRequestRelevant(RequestInfo request);
-	static RequestResult handleRequest(RequestInfo request);
+	virtual bool isRequestRelevant(RequestInfo request);
+	virtual RequestResult handleRequest(RequestInfo request);
 
 };

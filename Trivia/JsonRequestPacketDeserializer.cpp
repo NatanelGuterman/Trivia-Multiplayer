@@ -1,6 +1,4 @@
-#include "JsonRequestPacketDeserializer.h"
 #include "LoginRequestHandler.h"
-#include <bitset>
 
 /*
 *	Function will create a LoginRequest struct representation of the content that comes with the buffer
@@ -9,6 +7,7 @@
 *	Output:
 *		LoginRequest -  a struct with the fields content from the buffer content
 */
+
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> buffer)
 {
 	int i = 0, j = 0;
@@ -44,6 +43,7 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 *	Output:
 *		SignupRequest -  a struct with the fields content from the buffer content
 */
+
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> buffer)
 {
 	int i = 0, j = 0;
