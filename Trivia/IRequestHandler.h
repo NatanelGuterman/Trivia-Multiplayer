@@ -1,4 +1,8 @@
 #pragma once
+#include "RequestStructsMsg.h"
+
+struct RequestInfo;
+struct RequestResult;
 
 class IRequestHandler
 {

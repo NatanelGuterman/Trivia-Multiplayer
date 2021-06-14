@@ -20,7 +20,7 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo request)
     else
     {
         //JsonRequestPacketDeserializer::deserializeSignupRequest(request.buffer);
-        requestResult = { JsonResponsePacketSerializer::serializeResponse(SignupResponse({OK_STATUS})), nullptr };
+        requestResult = { JsonResponsePacketSerializer::serializeResponse(SignupResponse({OK_STATUS})), nullptr};
     }
     return requestResult;
 }

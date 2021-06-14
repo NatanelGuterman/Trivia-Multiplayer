@@ -4,7 +4,7 @@
 
 #define OK_STATUS 1
 
-class LoginRequestHandler : public IRequestHandler
+class LoginRequestHandler: public IRequestHandler
 {
 public:
 	virtual bool isRequestRelevant(RequestInfo request);

@@ -2,8 +2,6 @@
 #include <WinSock2.h>
 #include <map>
 #include "LoginRequestHandler.h"
-#include "JsonRequestPacketDeserializer.h"
-#include "JsonResponsePacketSerializer.h"
 #include <iostream>
 #include <thread>
 #include <string>
@@ -17,6 +15,7 @@
 #define BINARY 2
 #define BYTE_SIZE 8
 #define BYTE_MSG_SIZE 4
+#define ERROR_MSG "ERROR"
 
 class Communicator
 {

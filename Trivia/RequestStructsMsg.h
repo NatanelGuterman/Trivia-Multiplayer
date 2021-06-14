@@ -3,7 +3,7 @@
 #include <ctime>
 #include <vector>
 #include "IRequestHandler.h"
-
+class IRequestHandler;
 struct LoginRequest
 {
 	std::string username;
@@ -22,10 +22,11 @@ struct RequestInfo
 	int requestId;
 	std::time_t receivalTime;
 	std::vector<unsigned char> buffer;
-}typedef RequestInfo;
+} typedef RequestInfo;
+
 
 struct RequestResult
 {
 	std::vector<unsigned char> buffer;
 	IRequestHandler* newHandler;
-}typedef RequestResult;
+} typedef RequestResult;
