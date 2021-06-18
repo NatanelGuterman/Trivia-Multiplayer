@@ -28,8 +28,27 @@ output: None.
 void RoomManager::deleteRoom(int ID)
 {
 	std::map<int, Room>::iterator iter = this->m_rooms.find(ID);
+
 	if (iter != this->m_rooms.end())
 	{
 		this->m_rooms.erase(iter);
 	}
+}
+
+/*
+This function returnes if the room in the given id is active or not.
+input: int ID --> Room's id.
+output: unsigned int state --> The state of the room.
+*/
+
+unsigned int RoomManager::getRoomState(int ID)
+{
+	int state = 0;
+	std::map<int, Room>::iterator iter = this->m_rooms.find(ID);
+
+	if (iter != this->m_rooms.end())
+	{
+		state = this->m_rooms[ID].get_m_metdata().isActive;
+	}
+	return state;
 }
