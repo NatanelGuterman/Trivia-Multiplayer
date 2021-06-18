@@ -52,3 +52,19 @@ std::vector<std::string> Room::getAllUsers()
 
 	return result;
 }
+
+void Room::set_m_metdata(RoomData data)
+{
+	this->m_metadata = data;
+}
+
+void Room::set_m_users(std::vector<LoggedUser> users)
+{
+	int i = 0;
+	this->m_users.clear();
+
+	for (i = 0; i < users.size(); i++)
+	{
+		this->m_users.push_back(users[i]);
+	}
+}
