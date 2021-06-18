@@ -2,6 +2,8 @@
 #include "Room.h"
 #include <map>
 
+#define ACTIVE_ROOM 1
+#define INACTIVE_ROOM 0
 
 class RoomManager
 {

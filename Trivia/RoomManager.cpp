@@ -52,3 +52,24 @@ unsigned int RoomManager::getRoomState(int ID)
 	}
 	return state;
 }
+
+/*
+This function returns a vector of all active rooms.
+input: None.
+output: std::vector<RoomData> activeRooms --> The active rooms.
+*/
+
+std::vector<RoomData> RoomManager::getRooms()
+{
+	std::vector<RoomData> activeRooms;
+	std::map<int, Room>::iterator iter;
+
+	for (iter = this->m_rooms.begin(); iter != this->m_rooms.end(); iter++)
+	{
+		if (iter->second.get_m_metdata().isActive == ACTIVE_ROOM)
+		{
+			activeRooms.push_back(iter->second.get_m_metdata());
+		}
+	}
+	return activeRooms;
+}
