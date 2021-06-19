@@ -66,5 +66,9 @@ void LoginManager::logout(std::string username)
 		{
 			this->m_loggedUsers.erase(iter);
 		}
+		else
+		{
+			iter++;
+		}
 	}
 }
