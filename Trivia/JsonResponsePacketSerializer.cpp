@@ -96,7 +96,6 @@ std::vector<unsigned char> JsonResponsePacketSerializer::createBufferFromJson(nl
     messageToClient = removeUnneededCharacters(ResponseJson.dump());
     messageSize = std::bitset<BYTE_SIZE* AMOUNT_OF_BYTES>(messageToClient.length()).to_string();
     messageToClient = turnStringIntoBinary(messageToClient);
-    std::cout << messageSize << std::endl;
     buffer.insert(buffer.end(), code.begin(), code.end());
     buffer.insert(buffer.end(), messageSize.begin(), messageSize.end());
     buffer.insert(buffer.end(), messageToClient.begin(), messageToClient.end());

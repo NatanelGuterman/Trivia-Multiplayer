@@ -12,8 +12,8 @@
     <ClCompile Include="SqliteDataBase.cpp" />
     <ClCompile Include="LoggedUser.cpp" />
     <ClCompile Include="LoginManager.cpp" />
-    <ClCompile Include="Room.cpp" />
-    <ClCompile Include="RoomManager.cpp" />
+    <ClCompile Include="RequestHandlerFactory.cpp" />
+    <ClCompile Include="MenuRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\..\..\Downloads\json.hpp" />
@@ -32,7 +32,7 @@
     <ClInclude Include="LoginManager.h" />
     <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="EnumCodes.h" />
-    <ClInclude Include="Room.h" />
-    <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="RequestHandlerFactory.h" />
+    <ClInclude Include="MenuRequestHandler.h" />
   </ItemGroup>
 </Project>

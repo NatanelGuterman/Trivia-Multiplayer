@@ -2,6 +2,7 @@
 #include <WinSock2.h>
 #include <map>
 #include "LoginRequestHandler.h"
+#include "RequestHandlerFactory.h"
 #include <iostream>
 #include <thread>
 #include <string>
@@ -20,7 +21,7 @@
 class Communicator
 {
 public:
-	Communicator();
+	Communicator(RequestHandlerFactory& handlerFactory);
 	~Communicator();
 
 	void startHandleRequests();
@@ -31,6 +32,7 @@ private:
 	SOCKET m_serverSocket;
 	std::map<SOCKET, IRequestHandler*> m_clients;
 	bool _flagClosedSocket;
+	RequestHandlerFactory& m_handlerFactory;
 
 
 	// Methods
