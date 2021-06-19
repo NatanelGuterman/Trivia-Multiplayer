@@ -6,8 +6,9 @@
 class LoginManager
 {
 public:
-	void signup(std::string username, std::string password, std::string mail);
-	void login(std::string username, std::string password);
+	LoginManager();
+	bool signup(std::string username, std::string password, std::string mail);
+	bool login(std::string username, std::string password);
 	void logout(std::string username);
 
 private:

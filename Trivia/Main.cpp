@@ -1,6 +1,7 @@
 #pragma comment (lib, "ws2_32.lib")
 #include "Server.h"
 #include "WSAInitializer.h"
+#include "SqliteDataBase.h"
 #include <iostream>
 
 
@@ -12,7 +13,8 @@ int main()
 
 		//NOTICE at the end of this block the WSA will be closed 
 		WSAInitializer wsa_init;
-		Server server;
+		SqliteDataBase* dataBase = new SqliteDataBase();
+		Server server(dataBase);
 		server.run();
 
 	}

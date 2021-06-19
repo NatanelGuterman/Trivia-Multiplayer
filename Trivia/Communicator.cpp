@@ -1,7 +1,7 @@
 #include "Communicator.h"
 
 
-Communicator::Communicator()
+Communicator::Communicator(RequestHandlerFactory& handlerFactory) : m_handlerFactory(handlerFactory), _flagClosedSocket(false)
 {
 	// this server use TCP. that why SOCK_STREAM & IPPROTO_TCP
 	// if the server use UDP we will use: SOCK_DGRAM & IPPROTO_UDP 
@@ -88,52 +88,52 @@ void Communicator::accept()
 void Communicator::handleNewClient(SOCKET socket)
 {
 	char* msgBuffer;
-	msgBuffer = (char*)malloc(sizeof(char) * MIN_BUFFER_SIZE);
 	int msgSize = 0;
 	int i = 0;
-
-	RequestInfo msgInfo = { 0, NULL, {'\0'} }; //initialize request info struct
+	RequestInfo msgInfo;
 	try
 	{
-		recv(socket, msgBuffer, MIN_BUFFER_SIZE - 1, 0); //recive from the client the buffer (request)
-		msgBuffer[MIN_BUFFER_SIZE - 1] = 0; 
-		msgInfo.requestId = std::stoi(std::string(msgBuffer).substr(0, BYTE_SIZE), 0, BINARY); //get the current message code
-		msgSize = std::stoi(std::string(msgBuffer).substr(BYTE_SIZE, BYTE_SIZE * BYTE_MSG_SIZE), 0, BINARY); //get the current message size
-		msgInfo.receivalTime = std::time(nullptr); //get the current time of the message recive
-		msgBuffer = (char*)malloc(sizeof(char) * msgSize);
-		recv(socket, msgBuffer, msgSize, 0); //get the rest part of the message (the json)
-		for (i = 0; i < msgSize; i++)
+		while (true)
 		{
-			std::cout << msgSize << std::endl;
-			msgInfo.buffer.push_back(msgBuffer[i]);
-		}
-			
-			
-		if (this->m_clients[socket]->isRequestRelevant(msgInfo)) //check if the current request is valid 
-		{
-			RequestResult requestResult = this->m_clients[socket]->handleRequest(msgInfo); //call handle request to get the result of the operation
-			send(socket, (char*)requestResult.buffer.data(), requestResult.buffer.size(), 0); //send the result buffer to the client
-		}
-		else //in case of the request isn't relevant
-		{
-
-			ErrorResponse errResponse{ ERROR_MSG };
-			std::vector<unsigned char> errResponseBuffer = JsonResponsePacketSerializer::serializeResponse(errResponse); 
-			send(socket, (char*)errResponseBuffer.data(), errResponseBuffer.size(), 0); //send error message to the client
+			msgInfo = { 0, NULL, {'\0'} }; //initialize request info struct
+			msgBuffer = (char*)malloc(sizeof(char) * MIN_BUFFER_SIZE);
+			int res = recv(socket, msgBuffer, MIN_BUFFER_SIZE - 1, 0); //recive from the client the buffer (request)
+			if (res > 0)
+			{
+				msgBuffer[MIN_BUFFER_SIZE - 1] = 0;
+				msgInfo.requestId = std::stoi(std::string(msgBuffer).substr(0, BYTE_SIZE), 0, BINARY); //get the current message code
+				msgSize = std::stoi(std::string(msgBuffer).substr(BYTE_SIZE, BYTE_SIZE * BYTE_MSG_SIZE), 0, BINARY); //get the current message size
+				msgInfo.receivalTime = std::time(nullptr); //get the current time of the message recive
+				msgBuffer = (char*)malloc(sizeof(char) * msgSize * BYTE);
+				recv(socket, msgBuffer, msgSize * BYTE, 0); //get the rest part of the message (the json)
+				for (i = 0; i < msgSize * BYTE; i++)
+				{
+					msgInfo.buffer.push_back(msgBuffer[i]);
+				}
+				if (this->m_clients[socket]->isRequestRelevant(msgInfo)) //check if the current request is valid 
+				{
+					RequestResult requestResult = this->m_clients[socket]->handleRequest(msgInfo); //call handle request to get the result of the operation
+					send(socket, (char*)requestResult.buffer.data(), requestResult.buffer.size(), 0); //send the result buffer to the client
+				}
+				else //in case of the request isn't relevant
+				{
+					ErrorResponse errResponse{ ERROR_MSG };
+					std::vector<unsigned char> errResponseBuffer = JsonResponsePacketSerializer::serializeResponse(errResponse);
+					send(socket, (char*)errResponseBuffer.data(), errResponseBuffer.size(), 0); //send error message to the client
+				}
+			}
 		}
 	}
 	catch (const std::exception& e)
 	{		
 		// Closing the socket (in the level of the TCP protocol)
 		closesocket(socket);
-		free(msgBuffer);
 	}
 }
 //
 void Communicator::addNewClientToMap(SOCKET socket)
 {
-	LoginRequestHandler* loginRequestHandlerInstance = new LoginRequestHandler();
-	this->m_clients[socket] = loginRequestHandlerInstance;
+	this->m_clients[socket] = this->m_handlerFactory.createLoginRequestHandler();
 }
 
 

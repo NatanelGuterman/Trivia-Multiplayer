@@ -1,8 +1,8 @@
 #include "Server.h"
 
-Server::Server()
+Server::Server(IDataBase* dataBase) : m_communicator(this->m_handlerFactory), m_database(dataBase)
 { 
-	// Nothing To Do!
+	
 }
 
 Server::~Server()

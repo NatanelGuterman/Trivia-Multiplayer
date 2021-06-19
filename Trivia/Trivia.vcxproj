@@ -142,17 +142,16 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\..\..\Downloads\json.hpp" />
     <ClInclude Include="Communicator.h" />
-<<<<<<< HEAD
     <ClInclude Include="EnumCodes.h" />
-=======
     <ClInclude Include="IDataBase.h" />
->>>>>>> Feature/1.0.3-DB-abillities
     <ClInclude Include="IRequestHandler.h" />
     <ClInclude Include="JsonRequestPacketDeserializer.h" />
     <ClInclude Include="JsonResponsePacketSerializer.h" />
     <ClInclude Include="LoggedUser.h" />
     <ClInclude Include="LoginManager.h" />
     <ClInclude Include="LoginRequestHandler.h" />
+    <ClInclude Include="MenuRequestHandler.h" />
+    <ClInclude Include="RequestHandlerFactory.h" />
     <ClInclude Include="RequestStructsMsg.h" />
     <ClInclude Include="ResponseStructsMsg.h" />
     <ClInclude Include="Server.h" />
@@ -168,6 +167,8 @@
     <ClCompile Include="LoginRequestHandler.cpp" />
     <ClCompile Include="JsonResponsePacketSerializer.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuRequestHandler.cpp" />
+    <ClCompile Include="RequestHandlerFactory.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="SqliteDataBase.cpp" />

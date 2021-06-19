@@ -11,19 +11,14 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> buffer)
 {
 	int i = 0, j = 0;
-	std::string dataLength = "", bytesData = "", tempCharacter = "", data = "";
+	std::string bytesData = "", tempCharacter = "", data = "";
 
-	for (i = BYTE; i < BYTE * NUMBER_OF_DATA_BYTES; i++)
-	{
-		dataLength += buffer[i];
-	}
-
-	for (i = BYTE * NUMBER_OF_DATA_BYTES; i < stoi(dataLength, 0, BINARY); i++)
+	for (i = 1; i < buffer.size(); i++)
 	{
 		bytesData += buffer[i];
 	}
 
-	for (i = BYTE; i < stoi(dataLength, 0, BINARY) - BYTE; i += BYTE)
+	for (i = 0; i < buffer.size() - 1; i += BYTE)
 	{
 		for (j = i; j < BYTE + i; j++)
 		{
@@ -32,7 +27,7 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 		data += (char)std::stoi(tempCharacter, 0, BINARY);
 		tempCharacter = "";
 	}
-	LoginRequest result = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, data.find(COMMA) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.length() - data.find(COMMA) - SUB_FIND_PASSWORD) };
+	LoginRequest result = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, (data.length() - END_AFTER_LAST_VALUE) - (data.find(COMMA) + SUB_FIND_PASSWORD))};
 	return result;
 }
 
@@ -47,19 +42,14 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> buffer)
 {
 	int i = 0, j = 0;
-	std::string dataLength = "", bytesData = "", tempCharacter = "", data = "";
+	std::string bytesData = "", tempCharacter = "", data = "";
 
-	for (i = BYTE; i < BYTE * NUMBER_OF_DATA_BYTES; i++)
-	{
-		dataLength += buffer[i];
-	}
-
-	for (i = BYTE * NUMBER_OF_DATA_BYTES; i < stoi(dataLength, 0, BINARY); i++)
+	for (i = 1; i < buffer.size(); i++)
 	{
 		bytesData += buffer[i];
 	}
 
-	for (i = BYTE; i < stoi(dataLength, 0, BINARY); i += BYTE)
+	for (i = 0; i < buffer.size() - 1; i += BYTE)
 	{
 		for (j = i; j < BYTE + i; j++)
 		{
@@ -68,6 +58,6 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vecto
 		data += (char)std::stoi(tempCharacter, 0, BINARY);
 		tempCharacter = "";
 	}
-	SignupRequest request = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, data.find(COMMA) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.find(MAIL) - data.find(COMMA) - SUB_FIND_PASSWORD - 1), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - data.find(MAIL) - FIND_MAIL) };
+	SignupRequest request = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.find(MAIL) - END_AFTER_LAST_VALUE_MAIL - (data.find(COMMA) + SUB_FIND_PASSWORD)), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - 1 - (data.find(MAIL) + FIND_MAIL)) };
 	return request;
 }
