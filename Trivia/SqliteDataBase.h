@@ -2,6 +2,7 @@
 #include "IDataBase.h"
 #include <iostream>
 #include "sqlite3.h"
+#include <io.h>
 
 #define SQL_BEGIN "BEGIN;"
 #define SQL_COMMIT "COMMIT;"
@@ -9,12 +10,18 @@
 #define SQL_COMMIT_ERROR "Couldn't send COMMIT."
 
 
-class SqliteDataBase : IDataBase
+class SqliteDataBase : public IDataBase
 {
 public:
+	SqliteDataBase();
+	~SqliteDataBase();
 	virtual bool doesUserExist(std::string username);
 	virtual bool doesPasswordMatch(std::string username, std::string password);
 	virtual void addNewUser(std::string username, std::string password, std::string mail);
+
+	virtual bool open() override;
+	virtual void close() override;
+	virtual void clear() override;
 
 private:
 	sqlite3* _Database;
