@@ -60,7 +60,7 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vecto
 	// Fill request fields with the json values
 	result.username = jsonResult["username"];
 	result.password = jsonResult["password"];
-	result.email = jsonResult["email"];
+	result.email = jsonResult["mail"];
 	return result;
 }
 
