@@ -27,4 +27,6 @@ public:
 	static JoinRoomRequest deserializeJoinRoomRequest(std::vector<unsigned char> buffer);
 	static CreateRoomRequest deserializeCreateRoomRequest(std::vector<unsigned char> buffer);
 
+private:
+	static std::string getData(std::vector<unsigned char> buffer);
 };
