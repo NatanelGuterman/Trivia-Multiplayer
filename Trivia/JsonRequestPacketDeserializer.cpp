@@ -1,14 +1,6 @@
 #include "LoginRequestHandler.h"
 
-/*
-*	Function will create a LoginRequest struct representation of the content that comes with the buffer
-*	Input:
-*		std::vector<unsigned char> buffer - a binary buffer to get all the fields (content) from after convert
-*	Output:
-*		LoginRequest -  a struct with the fields content from the buffer content
-*/
-
-LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> buffer)
+std::string JsonRequestPacketDeserializer::getData(std::vector<unsigned char> buffer)
 {
 	int i = 0, j = 0;
 	std::string bytesData = "", tempCharacter = "", data = "";
@@ -27,7 +19,27 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 		data += (char)std::stoi(tempCharacter, 0, BINARY);
 		tempCharacter = "";
 	}
-	LoginRequest result = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, (data.length() - END_AFTER_LAST_VALUE) - (data.find(COMMA) + SUB_FIND_PASSWORD))};
+
+	return data;
+}
+
+/*
+*	Function will create a LoginRequest struct representation of the content that comes with the buffer
+*	Input:
+*		std::vector<unsigned char> buffer - a binary buffer to get all the fields (content) from after convert
+*	Output:
+*		LoginRequest -  a struct with the fields content from the buffer content
+*/
+
+LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	LoginRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.username = jsonResult["username"];
+	result.password = jsonResult["password"];
 	return result;
 }
 
@@ -41,23 +53,67 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> buffer)
 {
-	int i = 0, j = 0;
-	std::string bytesData = "", tempCharacter = "", data = "";
+	std::string data = getData(buffer);
+	SignupRequest result;
 
-	for (i = 1; i < buffer.size(); i++)
-	{
-		bytesData += buffer[i];
-	}
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.username = jsonResult["username"];
+	result.password = jsonResult["password"];
+	result.email = jsonResult["mail"];
+	return result;
+}
 
-	for (i = 0; i < buffer.size() - 1; i += BYTE)
-	{
-		for (j = i; j < BYTE + i; j++)
-		{
-			tempCharacter += bytesData[j];
-		}
-		data += (char)std::stoi(tempCharacter, 0, BINARY);
-		tempCharacter = "";
-	}
-	SignupRequest request = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.find(MAIL) - END_AFTER_LAST_VALUE_MAIL - (data.find(COMMA) + SUB_FIND_PASSWORD)), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - 1 - (data.find(MAIL) + FIND_MAIL)) };
-	return request;
+/*
+This function will create a GetPlayersInRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: GetPlayersInRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
+GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	GetPlayersInRoomRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.roomId = jsonResult["roomId"];
+	return result;
+}
+
+/*
+This function will create a JoinRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: JoinRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
+JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	JoinRoomRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.roomId = jsonResult["roomId"];
+	return result;
+}
+
+/*
+This function will create a CreateRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: CreateRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
+CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	CreateRoomRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.roomName = jsonResult["roomName"];
+	result.maxUsers = jsonResult["maxUsers"];
+	result.questionCount = jsonResult["questionCount"];
+	result.answerTimeout = jsonResult["answerTimeout"];
+	return result;
 }
