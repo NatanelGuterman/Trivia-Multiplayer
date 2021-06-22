@@ -23,7 +23,18 @@ bool SqliteDataBase::open()
     if (doesFileExist == -1)
     {
         std::cout << "Creating tables..." << std::endl;
-        sqlQuery("CREATE TABLE USERS (Username TEXT PRIMARY KEY NOT NULL, Password TEXT NOT NULL, Mail TEXT NOT NULL);", "ERROR: open() - Couldn't create table USERS.", nullptr);
+        sqlQuery("CREATE TABLE USERS (Username TEXT PRIMARY KEY NOT NULL, Password TEXT NOT NULL, Mail TEXT NOT NULL);", "ERROR: open() - Couldn't create table USERS.", nullptr); // table USERS
+        sqlQuery("CREATE TABLE QUESTIONS (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Question TEXT NOT NULL, RightAns TEXT NOT NULL, WrongAns1 TEXT NOT NULL, WrongAns2 TEXT NOT NULL, WrongAns3 TEXT NOT NULL);", "ERROR: open() - Couldn't create table QUESTIONS.", nullptr); // table QUESTIONS
+        addQuestionToDB("What does CPU stand for?", "Central Processing Unit", "Central Process Unit", "Computer Personal Unit", "Central Processor Unit");
+        addQuestionToDB("According to the International System of Units, how many bytes are in a kilobyte of RAM?", "1000", "512", "1024", "500");
+        addQuestionToDB("On which day did the World Wide Web go online?", "December 20, 1990", "December 17, 1996", "November 12, 1990", "November 24, 1995");
+        addQuestionToDB("What was the name given to Android 4.3?", "Jelly Bean", "Lollipop", "Nutella", "Froyo");
+        addQuestionToDB("In web design, what does CSS stand for?", "Cascading Style Sheet", "Counter Strike: Source", "Corrective Style Sheet", "Computer Style Sheet");
+        addQuestionToDB("In computing terms, typically what does CLI stand for?", "Command Line Interface", "Common Language Input", "Control Line Interface", "Common Language Interface");
+        addQuestionToDB("Which operating system was released first?", "Mac OS", "Windows", "Linux", "OS\/2");
+        addQuestionToDB("What does the term MIME stand for, in regards to computing?", "Multipurpose Internet Mail Extensions", "Mail Internet Mail Exchange", "Multipurpose Interleave Mail Exchange", "Mail Interleave Method Exchange");
+        addQuestionToDB("Which programming language was developed by Sun Microsystems in 1995?", "Java", "Python", "Solaris OS", "C++");
+        addQuestionToDB("In computing, what does LAN stand for?", "Local Area Network", "Long Antenna Node", "Light Access Node", "Land Address Navigation");
         std::cout << "Finished!" << std::endl;
     }
 
@@ -122,6 +133,18 @@ void SqliteDataBase::sqlQuery(const char* query, std::string error, int(*ptr)(vo
     {
         std::cerr << error << std::endl << errMessage << std::endl << std::endl;
     }
+}
+
+void SqliteDataBase::addQuestionToDB(std::string question, std::string rightAns, std::string wrongAns1, std::string wrongAns2, std::string wrondAns3)
+{
+    std::string query = "", error = "";
+    sqlQuery(SQL_BEGIN, SQL_BEGIN_ERROR, nullptr);
+
+    query = "INSERT INTO QUESTIONS (Question, RightAns, WrongAns1, WrongAns2, WrongAns3) VALUES(\"" + question + "\", \"" + rightAns + "\", \"" + wrongAns1 + "\", \"" + wrongAns2 + "\", \"" + wrondAns3 + "\");";
+    error = "ERROR: addQuestionToDB() - Couldn't insert into QUESTIONS.";
+
+    sqlQuery(query.c_str(), error, nullptr);
+    sqlQuery(SQL_COMMIT, SQL_COMMIT_ERROR, nullptr);
 }
 
 // CALLBACK FUNCTIONS
