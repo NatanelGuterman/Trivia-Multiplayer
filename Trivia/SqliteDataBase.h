@@ -26,5 +26,6 @@ public:
 private:
 	sqlite3* _Database;
 	void sqlQuery(const char* query, std::string error, int (*ptr)(void*, int, char**, char**)); // Helper Method
+	void addQuestionToDB(std::string question, std::string rightAns, std::string wrongAns1, std::string wrongAns2, std::string wrondAns3);
 
 };
