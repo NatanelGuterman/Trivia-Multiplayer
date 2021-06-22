@@ -40,6 +40,83 @@ std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(Signu
 }
 
 /*
+*   Function will get a response struct and return a binary buffer representation
+*   Input:
+*       LogoutResponse logoutResponse - sturct to get it's attributes into buffer
+*   Output:
+*       std::vector<unsigned char> - a buffer (binary) to send to client
+*/
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(LogoutResponse logoutResponse)
+{
+    nlohmann::json logoutResponseJson = logoutResponse;
+    return createBufferFromJson(logoutResponseJson, LOGOUT_CODE);
+}
+
+/*
+*   Function will get a response struct and return a binary buffer representation
+*   Input:
+*       GetRoomsResponse getRoomsResponse - sturct to get it's attributes into buffer
+*   Output:
+*       std::vector<unsigned char> - a buffer (binary) to send to client
+*/
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetRoomsResponse getRoomsResponse)
+{
+    nlohmann::json getRoomsResponseJson;
+    int i = 0;
+
+    for (i = 0; i < getRoomsResponse._rooms.size(); i++)
+    {
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["id"] = getRoomsResponse._rooms[i].id;
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["maxPlayers"] = getRoomsResponse._rooms[i].maxPlayers;
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["numOfQuestionsInGame"] = getRoomsResponse._rooms[i].numOfQuestionsInGame;
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["timePerQuestion"] = getRoomsResponse._rooms[i].timePerQuestion;
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["isActive"] = getRoomsResponse._rooms[i].isActive;
+        getRoomsResponseJson["Rooms"]["room" + std::to_string(i + 1)]["name"] = getRoomsResponse._rooms[i].name;
+    }
+
+    return createBufferFromJson(getRoomsResponseJson, GET_ROOM_CODE);
+}
+
+/*
+*   Function will get a response struct and return a binary buffer representation
+*   Input:
+*       GetPlayersInRoomResponse getPlayersInRoomResponse - sturct to get it's attributes into buffer
+*   Output:
+*       std::vector<unsigned char> - a buffer (binary) to send to client
+*/
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse getPlayersInRoomResponse)
+{
+    nlohmann::json getPlayersInRoomResponseJson = getPlayersInRoomResponse;
+    return createBufferFromJson(getPlayersInRoomResponseJson, GET_PLAYERS_IN_ROOM_CODE);
+}
+
+/*
+*   Function will get a response struct and return a binary buffer representation
+*   Input:
+*       JoinRoomResponse joinRoomResponse - sturct to get it's attributes into buffer
+*   Output:
+*       std::vector<unsigned char> - a buffer (binary) to send to client
+*/
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoomResponse)
+{
+    nlohmann::json joinRoomResponseJson = joinRoomResponse;
+    return createBufferFromJson(joinRoomResponseJson, JOIN_ROOM_CODE);
+}
+
+/*
+*   Function will get a response struct and return a binary buffer representation
+*   Input:
+*       CreateRoomResponse createRoomResponse - sturct to get it's attributes into buffer
+*   Output:
+*       std::vector<unsigned char> - a buffer (binary) to send to client
+*/
+std::vector<unsigned char> JsonResponsePacketSerializer::serializeResponse(CreateRoomResponse createRoomResponse)
+{
+    nlohmann::json createRoomResponseJson = createRoomResponse;
+    return createBufferFromJson(createRoomResponseJson, CREATE_ROOM_CODE);
+}
+
+/*
 *   Function will get a string and return binary representation of the string
 *   Input:
 *       string - string to convert to binary
