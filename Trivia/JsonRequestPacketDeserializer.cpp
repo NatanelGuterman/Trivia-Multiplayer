@@ -86,3 +86,23 @@ JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(std::v
 	result.roomId = jsonResult["roomId"];
 	return result;
 }
+
+/*
+This function will create a CreateRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: CreateRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
+CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	CreateRoomRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.roomName = jsonResult["roomName"];
+	result.maxUsers = jsonResult["maxUsers"];
+	result.questionCount = jsonResult["questionCount"];
+	result.answerTimeout = jsonResult["answerTimeout"];
+	return result;
+}
