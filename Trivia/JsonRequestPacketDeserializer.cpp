@@ -53,10 +53,33 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vecto
 	return request;
 }
 
+/*
+This function will create a GetPlayersInRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: GetPlayersInRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
 GetPlayersInRoomRequest JsonRequestPacketDeserializer::deserializeGetPlayersRequest(std::vector<unsigned char> buffer)
 {
 	std::string data = getData(buffer);
 	GetPlayersInRoomRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.roomId = jsonResult["roomId"];
+	return result;
+}
+
+/*
+This function will create a JoinRoomRequest struct representation of the content that comes with the buffer.
+input: std::vector<unsigned char> buffer --> a binary buffer to get all the fields (content) from after convert.
+output: JoinRoomRequest result --> a struct with the fields content from the buffer content.
+*/
+
+JoinRoomRequest JsonRequestPacketDeserializer::deserializeJoinRoomRequest(std::vector<unsigned char> buffer)
+{
+	std::string data = getData(buffer);
+	JoinRoomRequest result;
 
 	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
 	// Fill request fields with the json values
