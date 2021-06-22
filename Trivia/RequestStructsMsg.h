@@ -30,3 +30,19 @@ struct RequestResult
 	std::vector<unsigned char> buffer;
 	IRequestHandler* newHandler;
 } typedef RequestResult;
+
+struct GetPlayersInRoomRequest
+{
+	unsigned int roomId;
+} typedef GetPlayersInRoomRequest;
+
+struct JoinRoomRequest
+{
+	unsigned int roomId;
+} typedef JoinRoomRequest;
+
+struct CreateRoomRequest
+{
+	std::string roomName;
+	unsigned int maxUsers, questionCount, answerTimeout;
+} typedef CreateRoomRequest;
