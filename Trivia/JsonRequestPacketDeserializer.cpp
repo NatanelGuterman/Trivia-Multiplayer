@@ -34,7 +34,12 @@ std::string JsonRequestPacketDeserializer::getData(std::vector<unsigned char> bu
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<unsigned char> buffer)
 {
 	std::string data = getData(buffer);
-	LoginRequest result = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, (data.length() - END_AFTER_LAST_VALUE) - (data.find(COMMA) + SUB_FIND_PASSWORD))};
+	LoginRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.username = jsonResult["username"];
+	result.password = jsonResult["password"];
 	return result;
 }
 
@@ -49,8 +54,14 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(std::vector<
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(std::vector<unsigned char> buffer)
 {
 	std::string data = getData(buffer);
-	SignupRequest request = { data.substr(data.find(COLON) + ADD_FIND_USERNAME, (data.find(COMMA) - 1) - data.find(COLON) - SUB_FIND_USERNAME), data.substr(data.find(COMMA) + ADD_FIND_PASSWORD, data.find(MAIL) - END_AFTER_LAST_VALUE_MAIL - (data.find(COMMA) + SUB_FIND_PASSWORD)), data.substr(data.find(MAIL) + FIND_MAIL, data.find(END_OF_JSON) - 1 - (data.find(MAIL) + FIND_MAIL)) };
-	return request;
+	SignupRequest result;
+
+	nlohmann::json jsonResult = nlohmann::json::parse(data); // Parse string in json format to json object
+	// Fill request fields with the json values
+	result.username = jsonResult["username"];
+	result.password = jsonResult["password"];
+	result.email = jsonResult["email"];
+	return result;
 }
 
 /*
