@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <Button x:Name="skipButton" Content="Skip.." Height="120" Width="200" Canvas.Left="1020" Canvas.Top="550" FontSize="70" Background="{x:Null}" BorderBrush="Black"></Button>
+        <Button x:Name="skipButton" Content="Skip.." Height="120" Width="200" Canvas.Left="1020" Canvas.Top="550" FontSize="70" Background="{x:Null}" BorderBrush="Purple" Click="skipButton_Click" CornerRadius="50,50,50,50"></Button>
     </Canvas>
 </Page>
