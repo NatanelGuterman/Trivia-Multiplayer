@@ -17,6 +17,6 @@
         <TextBox x:Name="emailTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="400" Background="{x:Null}" BorderBrush="Black"></TextBox>
         <TextBlock Text="Already have an account? Log in " Height="60" Width="430" FontSize="30" Canvas.Left="330" Canvas.Top="640"></TextBlock>
         <Button x:Name="moveToLoginButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="755" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveToLoginButton_Click"></Button>
-        <Button x:Name="loginButton" Content="Sign Up!" Height="80" Width="200" FontSize="40" Canvas.Left="900" Canvas.Top="260" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50"></Button>
+        <Button x:Name="loginButton" Content="Sign Up!" Height="80" Width="200" FontSize="40" Canvas.Left="900" Canvas.Top="260" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="loginButton_Click"></Button>
     </Canvas>
 </Page>

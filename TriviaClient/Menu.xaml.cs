@@ -17,21 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TriviaClient
 {
-    public sealed partial class Signup : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class Menu : Page
     {
-        public Signup()
+        public Menu()
         {
             this.InitializeComponent();
-        }
-
-        private void moveToLoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Login));
-        }
-
-        private void loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Menu));
         }
     }
 }

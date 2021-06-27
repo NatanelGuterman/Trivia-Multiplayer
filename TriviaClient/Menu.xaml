@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="TriviaClient.Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TriviaClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas>
+        <TextBlock Text="Trivia" FontSize="100" Height="120" Width="260" Canvas.Left="512" Canvas.Top="30" FontWeight="Bold" Foreground="MediumPurple"></TextBlock>
+        <Button x:Name="createRoomButton" Height="100" Width="250" Content="Create Room" Canvas.Left="200" Canvas.Top="200" FontSize="40" Background="{x:Null}" BorderBrush="MediumPurple" CornerRadius="50,50,50,50"></Button>
+        <Button x:Name="joinRoomButton" Height="100" Width="250" Content="Join Room" Canvas.Left="200" Canvas.Top="320" FontSize="40" Background="{x:Null}" BorderBrush="MediumPurple" CornerRadius="50,50,50,50"></Button>
+        <Button x:Name="logoutButton" Height="100" Width="250" Content="Log out :(" Canvas.Left="40" Canvas.Top="580" FontSize="40" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50"></Button>
+        <Button x:Name="aboutUsButton" Height="100" Width="250" Content="About us" Canvas.Left="900" Canvas.Top="580" FontSize="40" Background="{x:Null}" BorderBrush="MediumPurple" CornerRadius="50,50,50,50"></Button>
+        <Image x:Name="defaultAvatar" Width="160" Height="160" Source="Assets/defaultAvatar.png" Canvas.Left="1100" Canvas.Top="10"/>
+        <TextBlock x:Name="usernameTextBlock" Height="60" Width="100" FontSize="40" Text="user1" Canvas.Left="1130" Canvas.Top="150" TextAlignment="Center"></TextBlock>
+    </Canvas>
+</Page>

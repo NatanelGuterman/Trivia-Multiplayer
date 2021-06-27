@@ -28,5 +28,10 @@ namespace TriviaClient
         {
             Frame.Navigate(typeof(Signup));
         }
+
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Menu));
+        }
     }
 }
