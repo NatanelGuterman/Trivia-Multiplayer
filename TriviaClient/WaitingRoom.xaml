@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="TriviaClient.WaitingRoom"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TriviaClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas>
+        <TextBlock x:Name="roomNameTextBlock" Text="You are connected to room ______" Height="100" Width="900" FontSize="50" Canvas.Left="230" Canvas.Top="20"></TextBlock>
+        <TextBlock x:Name="infoBlock" Text="Maximum players: ___, Number of questions: ____, Time per question: ___ sec" Height="100" Width="1260" FontSize="37" Canvas.Left="20" Canvas.Top="90"></TextBlock>
+        <TextBlock Text="Current participentys are: " Height="100" Width="580" FontSize="50" Canvas.Left="362" Canvas.Top="180" Foreground="DarkMagenta"></TextBlock>
+        <Button x:Name="startGameButton" Content="Start game" Height="100" Width="270" FontSize="40" Canvas.Left="200" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
+        <Button x:Name="closeRoomButton" Content="Close room" Height="100" Width="270" FontSize="40" Canvas.Left="810" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
+        <Button x:Name="leaveRoomButton" Content="Leave room" Height="100" Width="270" FontSize="40" Canvas.Left="503" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
+    </Canvas>
+</Page>

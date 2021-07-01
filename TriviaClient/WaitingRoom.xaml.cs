@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -18,21 +17,26 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TriviaClient
 {
-    public sealed partial class JoinRoom : Page
+    public sealed partial class WaitingRoom : Page
     {
-        public JoinRoom()
+        public WaitingRoom()
         {
-            this.InitializeComponent(); 
+            this.InitializeComponent();
+            visibleButtons();
         }
 
-        private void login_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateRoom));
-        }
 
-        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        private void visibleButtons()
         {
-            // Call to the functions that will show on the screen the available rooms again.
+            if (admin)
+            {
+                startGameButton.Visibility = Visibility.Visible;
+                closeRoomButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                leaveRoomButton.Visibility = Visibility.Visible;
+            }
+
         }
     }
-}

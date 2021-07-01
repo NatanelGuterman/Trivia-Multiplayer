@@ -9,8 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
+        <TextBlock Text="Available rooms:" Height="100" Width="400" FontSize="50" Canvas.Left="20" Canvas.Top="20"></TextBlock>
         <TextBlock Text="Want to create a brand new room? click" Height="60" Width="530" FontSize="30" Canvas.Left="320" Canvas.Top="640"></TextBlock>
         <Button x:Name="moveTCreateRoomButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="845" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveToSignupButton_Click"></Button>
-        <Button x:Name="joinRoomButton" Content="Join room!" Height="80" Width="270" FontSize="40" Canvas.Left="900" Canvas.Top="300" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="login_Click"></Button>
+        <Button x:Name="joinRoomButton" Content="Join room!" Height="80" Width="270" FontSize="40" Canvas.Left="1000" Canvas.Top="300" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="login_Click"></Button>
+        <Button x:Name="refreshButton" Content="Refresh" Height="80" Width="270" FontSize="40" Canvas.Left="1000" Canvas.Top="400" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="refreshButton_Click"></Button>
     </Canvas>
 </Page>
