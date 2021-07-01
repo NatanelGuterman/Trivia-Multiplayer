@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="TriviaClient.JoinRoom"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TriviaClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas>
+        <TextBlock Text="Want to create a brand new room? click" Height="60" Width="530" FontSize="30" Canvas.Left="320" Canvas.Top="640"></TextBlock>
+        <Button x:Name="moveTCreateRoomButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="845" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveToSignupButton_Click"></Button>
+        <Button x:Name="joinRoomButton" Content="Join room!" Height="80" Width="270" FontSize="40" Canvas.Left="900" Canvas.Top="300" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="login_Click"></Button>
+    </Canvas>
+</Page>
