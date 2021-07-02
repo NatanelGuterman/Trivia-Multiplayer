@@ -70,37 +70,79 @@ namespace TriviaClient
 
         private byte[] loginMessageInBytes()
         {
-            string message = "";
+            string message = "", binaryMessage = "";
             int i = 0;
-            byte[] codeLengthBuffer, dataBuffer, finalBuffer, result, temp;
+            byte[] buffer;
 
             message = "{\"username\": \"user1\", \"password\": \"1234\"}";
-            codeLengthBuffer = new byte[5];
-            codeLengthBuffer[0] = BitConverter.GetBytes(CODE_LOGIN)[0];
+            binaryMessage = StringToBinaryString(Encoding.UTF8, message);
+            buffer = new byte[5 * BYTE + binaryMessage.Length];
 
-            temp = BitConverter.GetBytes(message.Length);
-            Array.Reverse(temp);
-            result = temp;
-
-            for (i = 1; i <= result.Length; i++)
+            for (i = 0; i < binaryMessage.Length; i++)
             {
-                codeLengthBuffer[i] = result[i - 1];
+                buffer[i + 5 * BYTE] = (byte)int.Parse(binaryMessage[i].ToString());
             }
 
-            dataBuffer = Encoding.ASCII.GetBytes(message);
-            finalBuffer = new byte[codeLengthBuffer.Length + dataBuffer.Length];
+            binaryMessage = IntToBinaryString(binaryMessage.Length, 32);
+            for (i = 0; i < BYTE * 4; i++)
+            {
+                buffer[i + BYTE] = (byte)int.Parse(binaryMessage[i].ToString());
+            }
 
-            for (i = 0; i < codeLengthBuffer.Length; i++)
-                finalBuffer[i] = codeLengthBuffer[i];
+            binaryMessage = IntToBinaryString(CODE_LOGIN, 8);
+            for (i = 0; i < BYTE; i++)
+            {
+                buffer[i] = (byte)int.Parse(binaryMessage[i].ToString());
+            }
 
-            for (i = 0; i < dataBuffer.Length; i++)
-                finalBuffer[i + codeLengthBuffer.Length] = dataBuffer[i];
+            for (i = 0; i < buffer.Length; i++)
+            {
+                Debug.Write(buffer[i]);
+                if ((i + 1) % 8 == 0)
+                    Debug.Write(" ");
+            }
 
-            Debug.WriteLine("\nFinal buffer before sending: ");
-            for (i = 0; i < finalBuffer.Length; i++)
-                Debug.Write(finalBuffer[i] + " ");
+            return buffer;
+        }
 
-            return finalBuffer;
+        private string StringToBinaryString(Encoding encoding, string text)
+        {
+            return string.Join("", encoding.GetBytes(text).Select(n => Convert.ToString(n, 2).PadLeft(8, '0')));
+        }
+
+        private static string IntToBinaryString(int x, int size)
+        {
+            if (size == 0)
+                size = 32;
+
+            char[] bits = new char[size];
+            int i = 0;
+            char temp = ' ';
+
+            for (i = 0; i < size; i++)
+                bits[i] = '0';
+            i = 0;
+
+            while (x != 0)
+            {
+                bits[i++] = (x & 1) == 1 ? '1' : '0';
+                x >>= 1;
+            }
+
+            if (size == 32)
+            {
+                for (i = 0; i < size / 2; i++)
+                {
+                    temp = bits[i];
+                    bits[i] = bits[size - i - 1];
+                    bits[size - i - 1] = temp;
+                }
+            }
+            else
+            {
+                Array.Reverse(bits, 0, i);
+            }
+            return new string(bits);
         }
     }
 }
