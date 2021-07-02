@@ -28,15 +28,16 @@ namespace TriviaClient
 
         private void visibleButtons()
         {
-            if (admin)
-            {
-                startGameButton.Visibility = Visibility.Visible;
-                closeRoomButton.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                leaveRoomButton.Visibility = Visibility.Visible;
-            }
+            //if (admin)
+            //{
+            //    startGameButton.Visibility = Visibility.Visible;
+            //    closeRoomButton.Visibility = Visibility.Visible;
+            //}
+            //else
+            //{
+            //    leaveRoomButton.Visibility = Visibility.Visible;
+            //}
 
         }
     }
+}

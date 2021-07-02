@@ -11,8 +11,8 @@
     <Canvas>
         <TextBlock Text="Username:" Height="100" Width="250" FontSize="50" Canvas.Left="200" Canvas.Top="200"></TextBlock>
         <TextBlock Text="Password:" Height="100" Width="250" FontSize="50" Canvas.Left="200" Canvas.Top="300"></TextBlock>
-        <TextBox x:Name="usernameTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="200" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="passwordTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="300" Background="{x:Null}" BorderBrush="Black"></TextBox>
+        <TextBox x:Name="usernameTextBox" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="200" Background="{x:Null}" BorderBrush="Black"></TextBox>
+        <TextBox x:Name="passwordTextBox" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="300" Background="{x:Null}" BorderBrush="Black"></TextBox>
         <TextBlock Text="Don't have an account? Sign up " Height="60" Width="420" FontSize="30" Canvas.Left="340" Canvas.Top="640"></TextBlock>
         <Button x:Name="moveToSignupButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="755" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveToSignupButton_Click"></Button>
         <Button x:Name="login" Content="Log In!" Height="80" Width="200" FontSize="40" Canvas.Left="900" Canvas.Top="260" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="login_Click"></Button>
