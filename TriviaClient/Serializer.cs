@@ -10,7 +10,7 @@ namespace TriviaClient
     static class Serializer
     {
         const int CODE_SIZE = 8, MESSAGE_LENGTH = 32, BYTE = 8;
-        public static byte[] MessageInBytes(string username, string password, int messageCode, string message)
+        public static byte[] MessageInBytes(int messageCode, string message)
         {
             string binaryMessage = "";
             int i = 0;

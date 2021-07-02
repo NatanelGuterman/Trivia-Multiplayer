@@ -33,10 +33,10 @@ namespace TriviaClient
             clientStream = client.GetStream();
         }
 
-        public static void SendMessage(string username, string password, int messageCode, string message)
+        public static void SendMessage(int messageCode, string message)
         {
             int i = 0;
-            byte[] buffer = Serializer.MessageInBytes(username, password, messageCode, message);
+            byte[] buffer = Serializer.MessageInBytes(messageCode, message);
             SocketConnection.clientStream.Write(buffer, 0, buffer.Length);
             SocketConnection.clientStream.Flush();
 

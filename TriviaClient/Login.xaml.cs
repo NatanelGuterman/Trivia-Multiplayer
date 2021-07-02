@@ -24,7 +24,7 @@ namespace TriviaClient
 {
     public sealed partial class Login : Page
     {
-        const int CODE_LOGIN = 201, CODE_SIGNUP = 202;
+        const int CODE_LOGIN = 201;
         public Login()
         {
             this.InitializeComponent();
@@ -44,7 +44,7 @@ namespace TriviaClient
 
             try
             {
-                SocketConnection.SendMessage(usernameTextBox.Text, passwordTextBox.Text, CODE_LOGIN, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\"}");
+                SocketConnection.SendMessage(CODE_LOGIN, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\"}");
             }
             catch (Exception ex)
             {
