@@ -9,14 +9,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <TextBlock Text="Username:" Height="100" Width="250" FontSize="50" Canvas.Left="200" Canvas.Top="200"></TextBlock>
-        <TextBlock Text="Password:" Height="100" Width="250" FontSize="50" Canvas.Left="200" Canvas.Top="300"></TextBlock>
-        <TextBlock Text="Email:" Height="100" Width="250" FontSize="50" Canvas.Left="200" Canvas.Top="400"></TextBlock>
-        <TextBox x:Name="usernameTextBox" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="200" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="passwordTextBox" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="300" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="emailTextBox" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="400" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBlock Text="Already have an account? Log in " Height="60" Width="430" FontSize="30" Canvas.Left="330" Canvas.Top="640"></TextBlock>
-        <Button x:Name="moveToLoginButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="755" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveToLoginButton_Click"></Button>
-        <Button x:Name="signup" Content="Sign Up!" Height="80" Width="200" FontSize="40" Canvas.Left="900" Canvas.Top="260" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="signup_Click"></Button>
+        <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
+        <Rectangle Fill="White" Height="642" Width="434" Canvas.Left="418" Canvas.Top="39" RadiusX="50" RadiusY="50"></Rectangle>
+        <TextBlock Text="Sign up" Canvas.Left="453" Canvas.Top="69" FontFamily="Century Gothic" FontWeight="Bold" FontSize="70"></TextBlock>
+
+        <Rectangle Fill="#FFA5A5A5" Height="500" Width="434" Canvas.Left="418" Canvas.Top="181" RadiusX="50" RadiusY="50"></Rectangle>
+        <TextBox x:Name="usernameTextBox" PlaceholderText="username" Height="60" Width="248" FontSize="30" Canvas.Left="453" Canvas.Top="240" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+        <TextBox x:Name="passwordTextBox" PlaceholderText="password" Height="59" Width="300" FontSize="30" Canvas.Left="453" Canvas.Top="338" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+        <TextBox x:Name="emailTextBox" PlaceholderText="email" Height="63" Width="300" FontSize="30" Canvas.Left="453" Canvas.Top="431" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+        <TextBlock Text="Already have an account?" Height="40" Width="306" FontSize="20" Canvas.Left="442" Canvas.Top="634" FontFamily="JetBrains Mono"></TextBlock>
+        <Button x:Name="moveToLoginButton" Content="Login."  Height="50" Width="123" FontSize="20" Canvas.Left="728" Canvas.Top="623" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveToLoginButton_Click" FontFamily="JetBrains Mono"></Button>
+        <Button x:Name="signup" Content="Sign up!" Height="80" Width="250" FontSize="40" Canvas.Left="451" Canvas.Top="518" CornerRadius="25,25,25,25" Click="signup_Click" Foreground="White" FontFamily="Century Gothic">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Canvas>
 </Page>
