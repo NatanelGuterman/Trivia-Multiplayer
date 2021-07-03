@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <MediaElement Source="Assets/temp.mp4" AutoPlay="False" Height="736" Canvas.Left="10" Canvas.Top="10" Width="1320"/>
+        <MediaElement Source="Assets/temp.mp4" AutoPlay="True" Height="762" Canvas.Left="-46" Width="1372"/>
         <Button x:Name="skipButton" Visibility="Visible" Opacity="0" Content="Skip.." Height="99" Width="230" FontSize="50" Background="{x:Null}" Click="skipButton_Click" CornerRadius="50,50,50,50" Foreground="White" FontFamily="JetBrains Mono" FontWeight="Bold" RenderTransformOrigin="0.127,-1.027" Canvas.Left="1050" Canvas.Top="621" Loaded="skipButton_Loaded">
             <Button.Resources>
                 <ResourceDictionary>
