@@ -9,31 +9,32 @@ namespace TriviaClient
 {
     static class Serializer
     {
-        const int CODE_SIZE = 8, MESSAGE_LENGTH = 32, BYTE = 8;
+        const int CODE_SIZE = 8, MESSAGE_LENGTH = 32, BYTE = 8, ASCII_ONE = 49, ASCII_ZERO = 48;
         public static byte[] MessageInBytes(int messageCode, string message)
         {
             string binaryMessage = "";
             int i = 0;
             byte[] buffer;
+            Debug.WriteLine(message);
 
             binaryMessage = StringToBinaryString(Encoding.UTF8, message);
             buffer = new byte[5 * BYTE + binaryMessage.Length];
 
             for (i = 0; i < binaryMessage.Length; i++)
             {
-                buffer[i + 5 * BYTE] = (byte)int.Parse(binaryMessage[i].ToString());
+                buffer[i + 5 * BYTE] = (byte)(int.Parse(binaryMessage[i].ToString()) == 1 ? ASCII_ONE : ASCII_ZERO);
             }
 
-            binaryMessage = IntToBinaryString(binaryMessage.Length, MESSAGE_LENGTH);
+            binaryMessage = IntToBinaryString(message.Length, MESSAGE_LENGTH);
             for (i = 0; i < BYTE * 4; i++)
             {
-                buffer[i + BYTE] = (byte)int.Parse(binaryMessage[i].ToString());
+                buffer[i + BYTE] = (byte)(int.Parse(binaryMessage[i].ToString()) == 1 ? ASCII_ONE : ASCII_ZERO);
             }
 
             binaryMessage = IntToBinaryString(messageCode, CODE_SIZE);
             for (i = 0; i < BYTE; i++)
             {
-                buffer[i] = (byte)int.Parse(binaryMessage[i].ToString());
+                buffer[i] = (byte)(int.Parse(binaryMessage[i].ToString()) == 1 ? ASCII_ONE : ASCII_ZERO);
             }
 
             for (i = 0; i < buffer.Length; i++)

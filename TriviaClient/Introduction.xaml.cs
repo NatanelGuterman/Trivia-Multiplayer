@@ -19,14 +19,30 @@ namespace TriviaClient
 {
     public sealed partial class MainPage : Page
     {
+        DispatcherTimer _dispatcherTimer;
         public MainPage()
         {
             this.InitializeComponent();
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Tick += dispatcherTimer_Tick;
+            _dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1);
+
+        }
+
+        private void dispatcherTimer_Tick(object sender, object e)
+        {
+            skipButton.Opacity += 0.009;
         }
 
         private void skipButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Login));
         }
+
+        private void skipButton_Loaded(object sender, RoutedEventArgs e)
+        {
+            _dispatcherTimer.Start();
+        }
+
     }
 }

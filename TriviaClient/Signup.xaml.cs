@@ -39,7 +39,7 @@ namespace TriviaClient
 
             try
             {
-                SocketConnection.SendMessage(CODE_SIGNUP, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\", \"email\": \"" + emailTextBox.Text + "\"}");
+                SocketConnection.SendMessage(CODE_SIGNUP, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\", \"mail\": \"" + emailTextBox.Text + "\"}");
             }
             catch (Exception ex)
             {

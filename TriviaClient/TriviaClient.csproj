@@ -151,6 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\defaultAvatar.png" />
+    <Content Include="Assets\temp.mp4" />
+    <Content Include="Assets\wallpaper-login-singup.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
