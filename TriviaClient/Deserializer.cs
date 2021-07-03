@@ -16,7 +16,7 @@ namespace TriviaClient
     static class Deserializer
     {
         const int CODE_AND_LENGTH_BYTES = 5;
-        public static Status Status1Deserializer(byte[] message)
+        public static Status StatusDeserializer(byte[] message)
         {
             string temp = Encoding.ASCII.GetString(message), res = "";
             int i = 0;
