@@ -43,14 +43,24 @@ namespace TriviaClient
             Debug.WriteLine("start");
             for (i = 0; i < buffer.Length; i++)
                 Debug.Write(buffer[i] + " ");
+        }
 
-            buffer = new byte[1024];
-            int bytesRead = SocketConnection.clientStream.Read(buffer, 0, 1024);
+        public static byte[] ReadMessage()
+        {
+            byte[]  buffer = new byte[4096], result;
+            int i = 0;
+            int bytesRead = clientStream.Read(buffer, 0, 1024);
+            result = new byte[bytesRead];
+            for (i = 0; i < bytesRead; i++)
+            {
+                result[i] = buffer[i];
+            }
 
             Debug.WriteLine("Readed buffer: ");
 
             for (i = 0; i < bytesRead; i++)
                 Debug.Write((char)buffer[i] + " ");
+            return result;
         }
     }
 }
