@@ -19,6 +19,7 @@ namespace TriviaClient
 {
     public sealed partial class Signup : Page
     {
+        const int CODE_SIGNUP = 202;
         public Signup()
         {
             this.InitializeComponent();
@@ -29,8 +30,21 @@ namespace TriviaClient
             Frame.Navigate(typeof(Login));
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        private void signup_Click(object sender, RoutedEventArgs e)
         {
+            if (!SocketConnection.isConnected)
+            {
+                SocketConnection.ConnectSocket();
+            }
+
+            try
+            {
+                SocketConnection.SendMessage(CODE_SIGNUP, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\", \"mail\": \"" + emailTextBox.Text + "\"}");
+            }
+            catch (Exception ex)
+            {
+                SocketConnection.dialogUpdate("Error!", ex.Message);
+            }
             Frame.Navigate(typeof(Menu));
         }
     }

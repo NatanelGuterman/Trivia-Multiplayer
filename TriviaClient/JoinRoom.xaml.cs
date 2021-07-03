@@ -25,14 +25,14 @@ namespace TriviaClient
             this.InitializeComponent(); 
         }
 
-        private void login_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateRoom));
-        }
-
         private void refreshButton_Click(object sender, RoutedEventArgs e)
         {
             // Call to the functions that will show on the screen the available rooms again.
+        }
+
+        private void moveTCreateRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateRoom));
         }
     }
 }
