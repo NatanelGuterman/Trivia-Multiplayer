@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +10,12 @@ namespace TriviaClient
 {
     struct Status
     {
-        int status;
+        public int status;
     }
 
     static class Deserializer
     {
-
+        const int CODE_AND_LENGTH_BYTES = 5;
         public static Status Status1Deserializer(byte[] message)
         {
             string temp = Encoding.ASCII.GetString(message), res = "";
@@ -25,6 +26,7 @@ namespace TriviaClient
             {
                 list.Add(Convert.ToByte(temp.Substring(i, 8), 2));
             }
+            list.RemoveRange(0, CODE_AND_LENGTH_BYTES);
             res = Encoding.ASCII.GetString(list.ToArray());
             Status result = JsonConvert.DeserializeObject<Status>(res);
             return result;

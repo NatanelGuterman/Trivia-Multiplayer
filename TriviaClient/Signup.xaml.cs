@@ -40,12 +40,19 @@ namespace TriviaClient
             try
             {
                 SocketConnection.SendMessage(CODE_SIGNUP, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\", \"mail\": \"" + emailTextBox.Text + "\"}");
+                if (Deserializer.Status1Deserializer(SocketConnection.ReadMessage()).status == 1)
+                {
+                    Frame.Navigate(typeof(Menu));
+                }
+                else
+                {
+                    SocketConnection.dialogUpdate("Error!", "Status isn't 1.");
+                }
             }
             catch (Exception ex)
             {
                 SocketConnection.dialogUpdate("Error!", ex.Message);
             }
-            Frame.Navigate(typeof(Menu));
         }
     }
 }

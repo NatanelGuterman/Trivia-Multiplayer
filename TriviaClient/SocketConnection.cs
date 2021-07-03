@@ -47,15 +47,20 @@ namespace TriviaClient
 
         public static byte[] ReadMessage()
         {
-            byte[]  buffer = new byte[1024];
+            byte[]  buffer = new byte[4096], result;
             int i = 0;
-            int bytesRead = SocketConnection.clientStream.Read(buffer, 0, 1024);
+            int bytesRead = clientStream.Read(buffer, 0, 1024);
+            result = new byte[bytesRead];
+            for (i = 0; i < bytesRead; i++)
+            {
+                result[i] = buffer[i];
+            }
 
             Debug.WriteLine("Readed buffer: ");
 
             for (i = 0; i < bytesRead; i++)
                 Debug.Write((char)buffer[i] + " ");
-            return buffer;
+            return result;
         }
     }
 }
