@@ -22,22 +22,27 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo request)
     case LOGOUT_CODE:
     {
         requestResult = signout(request);
+        break;
     }
     case GET_ROOM_CODE:
     {
         requestResult = getRooms(request);
+        break;
     }
     case GET_PLAYERS_IN_ROOM_CODE:
     {
         requestResult = getPlayersInRoom(request);
+        break;
     }
     case JOIN_ROOM_CODE:
     {
         requestResult = joinRoom(request);
+        break;
     }
     case CREATE_ROOM_CODE:
     {
         requestResult = createRoom(request);
+        break;
     }
     }
     return requestResult;
@@ -48,11 +53,11 @@ RequestResult MenuRequestHandler::signout(RequestInfo requestInfo)
     try {
         if (this->m_handlerFactory.getLoginManager().logout(this->m_user.getUsername()))
         {
-            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({OK_STATUS})), this };
+            return { JsonResponsePacketSerializer::serializeResponse(LogoutResponse({OK_STATUS})), this };
         }
         else
         {
-            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({PROBLEM_STATUS})), nullptr };
+            return { JsonResponsePacketSerializer::serializeResponse(LogoutResponse({PROBLEM_STATUS})), nullptr };
         }
     }
     catch (std::exception& ex)
