@@ -9,16 +9,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <TextBlock Text="Number of&#x0a;questions:" Height="100" Width="200" FontSize="40" Canvas.Left="300" Canvas.Top="80"></TextBlock>
-        <TextBlock Text="Room's&#x0a;name:" Height="100" Width="200" FontSize="40" Canvas.Left="300" Canvas.Top="200"></TextBlock>
-        <TextBlock Text="Time per&#x0a;question:" Height="110" Width="200" FontSize="40" Canvas.Left="300" Canvas.Top="320"></TextBlock>
-        <TextBlock Text="Maximum&#x0a;players:" Height="110" Width="200" FontSize="40" Canvas.Left="300" Canvas.Top="440"></TextBlock>
-        <TextBox x:Name="numOfQuestionsTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="80" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="roomNameTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="200" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="timePerQuestionTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="320" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBox x:Name="maxPlayersTextBlock" PlaceholderText="Type here..." Height="90" Width="300" FontSize="50" Canvas.Left="500" Canvas.Top="440" Background="{x:Null}" BorderBrush="Black"></TextBox>
-        <TextBlock Text="Want to join to an existing room? click" Height="60" Width="510" FontSize="30" Canvas.Left="320" Canvas.Top="640"></TextBlock>
-        <Button x:Name="moveTJoinRoomButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="825" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveTJoinRoomButton_Click"></Button>
-        <Button x:Name="createRoomButton" Content="Create room!" Height="80" Width="270" FontSize="40" Canvas.Left="900" Canvas.Top="270" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50"></Button>
+        <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
+        <Rectangle Fill="Black" Height="642" Width="1136" Canvas.Left="83" Canvas.Top="39" RadiusX="50" RadiusY="50"></Rectangle>
+        <Rectangle Fill="White" Height="511" Width="1136" Canvas.Left="83" Canvas.Top="170" RadiusX="50" RadiusY="50"></Rectangle>
+        <TextBlock Text=">> Create Room" Canvas.Left="122" Canvas.Top="67" FontFamily="Century Gothic" FontWeight="Bold" FontSize="70" Foreground="Green"></TextBlock>
+        <TextBox x:Name="roomNameTextBlock" PlaceholderText=">> Room name" Height="60" Width="349" FontSize="35" Canvas.Left="122" Canvas.Top="218" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+        <TextBox x:Name="numOfQuestionsTextBlock" PlaceholderText=">> Amount of questions" Height="60" Width="517" FontSize="35" Canvas.Left="123" Canvas.Top="406" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+        <TextBox x:Name="timePerQuestionTextBlock" PlaceholderText=">> Time per question" Height="60" Width="456" FontSize="35" Canvas.Left="123" Canvas.Top="505" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono" RenderTransformOrigin="0.518,0.64"></TextBox>
+        <TextBox x:Name="maxPlayersTextBlock" PlaceholderText=">> Max players" Height="60" Width="349" FontSize="35" Canvas.Left="122" Canvas.Top="310" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
+
+
+        <TextBlock Text="Want to join to an existing room? click" Height="60" Width="510" FontSize="20" Canvas.Left="297" Canvas.Top="642" FontFamily="JetBrains Mono"></TextBlock>
+        <Button x:Name="moveTJoinRoomButton" Content="here."  Height="50" Width="103" FontSize="30" Canvas.Left="786" Canvas.Top="625" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveTJoinRoomButton_Click" FontFamily="JetBrains Mono"></Button>
+        <Button x:Name="createRoom" Content="Create Room!" Height="80" Width="320" FontSize="40" Canvas.Left="845" Canvas.Top="485" CornerRadius="25,25,25,25" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Canvas>
 </Page>

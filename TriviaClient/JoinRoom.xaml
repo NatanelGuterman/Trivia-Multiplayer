@@ -9,10 +9,38 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <TextBlock Text="Available rooms:" Height="100" Width="400" FontSize="50" Canvas.Left="20" Canvas.Top="20"></TextBlock>
-        <TextBlock Text="Want to create a brand new room? click" Height="60" Width="530" FontSize="30" Canvas.Left="320" Canvas.Top="640"></TextBlock>
-        <Button x:Name="moveTCreateRoomButton" Content="here."  Height="50" Width="90" FontSize="30" Canvas.Left="845" Canvas.Top="635" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="Red" Click="moveTCreateRoomButton_Click"></Button>
-        <Button x:Name="joinRoomButton" Content="Join room!" Height="80" Width="270" FontSize="40" Canvas.Left="1000" Canvas.Top="300" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50"></Button>
-        <Button x:Name="refreshButton" Content="Refresh" Height="80" Width="270" FontSize="40" Canvas.Left="1000" Canvas.Top="400" Background="{x:Null}" BorderBrush="Red" CornerRadius="50,50,50,50" Click="refreshButton_Click"></Button>
+        <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
+        <Rectangle Fill="Black" Height="642" Width="1136" Canvas.Left="83" Canvas.Top="39" RadiusX="50" RadiusY="50"></Rectangle>
+        <Rectangle Fill="White" Height="511" Width="1136" Canvas.Left="83" Canvas.Top="170" RadiusX="50" RadiusY="50"></Rectangle>
+        <TextBlock Text=">> Availble Rooms:" Canvas.Left="122" Canvas.Top="67" FontFamily="Century Gothic" FontWeight="Bold" FontSize="70" Foreground="Green"></TextBlock>
+        <TextBlock Text="Want to create a brand new room? click" Height="60" Width="530" FontSize="20" Canvas.Left="303" Canvas.Top="647" FontFamily="JetBrains Mono"></TextBlock>
+        <Button x:Name="moveTCreateRoomButton" Content="here."  Height="50" Width="112" FontSize="30" Canvas.Left="780" Canvas.Top="632" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveTCreateRoomButton_Click" FontFamily="JetBrains Mono"></Button>
+        <Button x:Name="joinRoom" Content="Join Room!" Height="80" Width="320" FontSize="40" Canvas.Left="845" Canvas.Top="485" CornerRadius="25,25,25,25" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Canvas.Left="1064" Canvas.Top="193" Background="White" Height="94" Width="122" BorderThickness="0,0,0,0">
+            <Viewbox MaxHeight="50" MaxWidth="50" Height="99" Width="100">
+                <SymbolIcon Symbol="Refresh"/>
+            </Viewbox>
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Gray"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="White"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Gray"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="White"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+        </Button>
     </Canvas>
 </Page>

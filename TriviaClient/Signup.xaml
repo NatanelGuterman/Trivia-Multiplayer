@@ -19,7 +19,7 @@
         <TextBox x:Name="emailTextBox" PlaceholderText="email" Height="63" Width="300" FontSize="30" Canvas.Left="453" Canvas.Top="431" Background="{x:Null}" BorderBrush="#FF313131" BorderThickness="0,0,0,2" FontFamily="JetBrains Mono"></TextBox>
         <TextBlock Text="Already have an account?" Height="40" Width="306" FontSize="20" Canvas.Left="442" Canvas.Top="634" FontFamily="JetBrains Mono"></TextBlock>
         <Button x:Name="moveToLoginButton" Content="Login."  Height="50" Width="123" FontSize="20" Canvas.Left="728" Canvas.Top="623" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveToLoginButton_Click" FontFamily="JetBrains Mono"></Button>
-        <Button x:Name="signup" Content="Sign up!" Height="80" Width="250" FontSize="40" Canvas.Left="451" Canvas.Top="518" CornerRadius="25,25,25,25" Click="signup_Click" Foreground="White" FontFamily="Century Gothic">
+        <Button x:Name="signup" Content="Sign up!" Height="80" Width="250" FontSize="40" Canvas.Left="451" Canvas.Top="518" CornerRadius="25,25,25,25" Click="signup_Click" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0">
                     <GradientStop Color="#4875E6" Offset="0.1" />
