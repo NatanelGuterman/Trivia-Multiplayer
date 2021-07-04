@@ -19,6 +19,11 @@ namespace TriviaClient
         public string name;
     }
 
+    struct PlayersInRoom
+    {
+        public string[] _players;
+    }
+
     static class Deserializer
     {
         const int CODE_AND_LENGTH_BYTES = 5;
@@ -69,6 +74,13 @@ namespace TriviaClient
                 roomsData.Add(JsonConvert.DeserializeObject<RoomData>(allJsons[i]));
             }
             return roomsData;
+        }
+
+        public static PlayersInRoom GetPlayersInRoom(byte[] message)
+        {
+            string res = ConvertBytesToAscii(message);
+            PlayersInRoom result = JsonConvert.DeserializeObject<PlayersInRoom>(res);
+            return result;
         }
     }
 }
