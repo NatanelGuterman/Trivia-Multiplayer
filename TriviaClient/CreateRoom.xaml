@@ -21,7 +21,7 @@
 
         <TextBlock Text="Want to join to an existing room? click" Height="60" Width="510" FontSize="20" Canvas.Left="297" Canvas.Top="642" FontFamily="JetBrains Mono"></TextBlock>
         <Button x:Name="moveTJoinRoomButton" Content="here."  Height="50" Width="103" FontSize="30" Canvas.Left="786" Canvas.Top="625" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveTJoinRoomButton_Click" FontFamily="JetBrains Mono"></Button>
-        <Button x:Name="createRoom" Content="Create Room!" Height="80" Width="320" FontSize="40" Canvas.Left="845" Canvas.Top="485" CornerRadius="25,25,25,25" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold">
+        <Button x:Name="createRoom" Content="Create Room!" Height="80" Width="320" FontSize="40" Canvas.Left="845" Canvas.Top="485" CornerRadius="25,25,25,25" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold" Click="createRoom_Click">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0">
                     <GradientStop Color="#4875E6" Offset="0.1" />

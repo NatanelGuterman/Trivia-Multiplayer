@@ -29,7 +29,6 @@ namespace TriviaClient
         public Menu()
         {
             this.InitializeComponent();
-            this.InitializeComponent();
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += dispatcherTimer_Tick;
             _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);

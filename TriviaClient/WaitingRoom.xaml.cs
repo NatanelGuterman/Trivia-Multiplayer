@@ -25,7 +25,6 @@ namespace TriviaClient
             visibleButtons();
         }
 
-
         private void visibleButtons()
         {
             //if (admin)
@@ -38,6 +37,12 @@ namespace TriviaClient
             //    leaveRoomButton.Visibility = Visibility.Visible;
             //}
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            //usernameTextBlock.Text = (string)e.Parameter;
         }
     }
 }
