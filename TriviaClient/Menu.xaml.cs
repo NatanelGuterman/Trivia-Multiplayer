@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -24,6 +25,7 @@ namespace TriviaClient
     public sealed partial class Menu : Page
     {
         DispatcherTimer _dispatcherTimer;
+        const int CODE_LOGOUT = 204;
         public Menu()
         {
             this.InitializeComponent();
@@ -73,11 +75,26 @@ namespace TriviaClient
                             }
                         case 2:
                             {
+
                                 Frame.Navigate(typeof(JoinRoom));
                                 break;
                             }
                         case 3:
                             {
+                                if (!SocketConnection.isConnected)
+                                {
+                                    SocketConnection.ConnectSocket();
+                                }
+                                SocketConnection.SendMessage(CODE_LOGOUT, "{}"); //no data to send
+                                if (Deserializer.StatusDeserializer(SocketConnection.ReadMessage()).status == 1)
+                                {
+                                    CoreApplication.Exit();
+                                }
+                                else
+                                {
+                                    SocketConnection.dialogUpdate("Error!", "Problem in logout.");
+                                }
+
                                 //logout
                                 break;
                             }
@@ -89,11 +106,14 @@ namespace TriviaClient
                                 break;
                             }
                     }
-                }catch(Exception ex)
+                }catch(InvalidCastException ex)
                 {
                     var dialog = new MessageDialog("Invalid input!, only 1, 2 or 3!.");
                     dialog.Title = "Error";
                     _ = dialog.ShowAsync();
+                }catch(Exception ex)
+                {
+                    SocketConnection.dialogUpdate("Error!", ex.Message);
                 }
 
             }

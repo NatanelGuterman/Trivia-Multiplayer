@@ -46,7 +46,7 @@ namespace TriviaClient
                 }
                 else
                 {
-                    SocketConnection.dialogUpdate("Error!", "Status isn't 1.");
+                    SocketConnection.dialogUpdate("Error!", "Problem in sign in");
                 }
             }
             catch (Exception ex)
