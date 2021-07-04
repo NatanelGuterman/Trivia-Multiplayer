@@ -59,7 +59,7 @@ input: None.
 output: std::vector<RoomData> activeRooms --> The active rooms.
 */
 
-std::vector<RoomData> RoomManager::getRooms()
+std::vector<RoomData> RoomManager::getRoomsData()
 {
 	std::vector<RoomData> activeRooms;
 	std::map<int, Room>::iterator iter;
@@ -72,4 +72,20 @@ std::vector<RoomData> RoomManager::getRooms()
 		}
 	}
 	return activeRooms;
+}
+
+void RoomManager::addUser(int id, LoggedUser user)
+{
+	this->m_rooms[id].addUser(user);
+}
+
+int RoomManager::generateRoomId()
+{
+	int num = std::prev(this->m_rooms.end())->first;
+	return num++;
+}
+
+std::map<int, Room> RoomManager::getRoomsMap()
+{
+	return this->m_rooms;
 }

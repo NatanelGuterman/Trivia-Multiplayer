@@ -56,19 +56,22 @@ input: std::string username --> The username.
 output: None.
 */
 
-void LoginManager::logout(std::string username)
+bool LoginManager::logout(std::string username)
 {
 	std::vector<LoggedUser>::iterator iter = this->m_loggedUsers.begin();
-
+	bool flag = false;
 	while (iter != this->m_loggedUsers.end())
 	{
 		if ((*iter).getUsername() == username)
 		{
 			this->m_loggedUsers.erase(iter);
+			flag = true;
 		}
 		else
 		{
 			iter++;
 		}
 	}
+	return flag;
+
 }

@@ -9,7 +9,7 @@ public:
 	LoginManager();
 	bool signup(std::string username, std::string password, std::string mail);
 	bool login(std::string username, std::string password);
-	void logout(std::string username);
+	bool logout(std::string username);
 
 private:
 	SqliteDataBase* m_database;

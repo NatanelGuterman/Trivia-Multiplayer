@@ -46,13 +46,13 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo request)
 RequestResult MenuRequestHandler::signout(RequestInfo requestInfo)
 {
     try {
-        if (this->.signup())
+        if (this->m_handlerFactory.getLoginManager().logout(this->m_user.getUsername()))
         {
-            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({OK_STATUS})), this->m_handlerFactory.createMenuRequestHandler() };
+            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({OK_STATUS})), this };
         }
         else
         {
-            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({PROBLEM_STATUS})), this->m_handlerFactory.createLoginRequestHandler() };
+            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({PROBLEM_STATUS})), nullptr };
         }
     }
     catch (std::exception& ex)
@@ -63,20 +63,51 @@ RequestResult MenuRequestHandler::signout(RequestInfo requestInfo)
 
 RequestResult MenuRequestHandler::getRooms(RequestInfo requestInfo)
 {
-    return RequestResult();
+    try {
+        return { JsonResponsePacketSerializer::serializeResponse(GetRoomsResponse({OK_STATUS, this->m_roomManager.getRoomsData()})), this };
+    }
+    catch (std::exception& ex)
+    {
+        return { JsonResponsePacketSerializer::serializeResponse(ErrorResponse({ERROR_MSG})), nullptr };
+    }
 }
 
 RequestResult MenuRequestHandler::getPlayersInRoom(RequestInfo requestInfo)
 {
-    return RequestResult();
+    try {
+        GetPlayersInRoomRequest getPlayersInRoomRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest(requestInfo.buffer);
+        return { JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomResponse({this->m_roomManager.getRoomsMap()[getPlayersInRoomRequest.roomId].getAllUsers()})), this };
+
+    }
+    catch (std::exception& ex)
+    {
+        return { JsonResponsePacketSerializer::serializeResponse(ErrorResponse({ERROR_MSG})), nullptr };
+    }
 }
 
 RequestResult MenuRequestHandler::joinRoom(RequestInfo requestInfo)
 {
-    return RequestResult();
+    try {
+        JoinRoomRequest joinRoomRequest =  JsonRequestPacketDeserializer::deserializeJoinRoomRequest(requestInfo.buffer);
+        this->m_handlerFactory.getRoomManager().addUser(joinRoomRequest.roomId, this->m_user);
+        return { JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse({OK_STATUS})), this};
+    }
+    catch (std::exception& ex)
+    {
+        return { JsonResponsePacketSerializer::serializeResponse(ErrorResponse({ERROR_MSG})), nullptr };
+    }
 }
 
 RequestResult MenuRequestHandler::createRoom(RequestInfo requestInfo)
 {
-    return RequestResult();
+    try {
+        CreateRoomRequest createRoomRequest = JsonRequestPacketDeserializer::deserializeCreateRoomRequest(requestInfo.buffer);
+        this->m_handlerFactory.getRoomManager().createRoom(this->m_user, RoomData({this->m_roomManager.generateRoomId(), createRoomRequest.maxUsers, createRoomRequest.questionCount, createRoomRequest.answerTimeout, 0,  createRoomRequest.roomName}));
+        return { JsonResponsePacketSerializer::serializeResponse(CreateRoomResponse({OK_STATUS})), this };
+
+    }
+    catch (std::exception& ex)
+    {
+        return { JsonResponsePacketSerializer::serializeResponse(ErrorResponse({ERROR_MSG})), nullptr };
+    }
 }
