@@ -114,6 +114,7 @@ void Communicator::handleNewClient(SOCKET socket)
 				{
 					RequestResult requestResult = this->m_clients[socket]->handleRequest(msgInfo); //call handle request to get the result of the operation
 					send(socket, (char*)requestResult.buffer.data(), requestResult.buffer.size(), 0); //send the result buffer to the client
+					this->m_clients[socket] = requestResult.newHandler;
 				}
 				else //in case of the request isn't relevant
 				{
