@@ -20,7 +20,7 @@
         <Button x:Name="logoutButton" Content=">> Logout! - 3" Height="80" Width="334" FontSize="30" Canvas.Left="373" Canvas.Top="391" CornerRadius="25,25,25,25" Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold">
         </Button>
         <TextBlock x:Name="optionTitle" Text =">> Your option:" Height="47" Width="293" FontSize="30" Canvas.Left="410" Canvas.Top="514"  Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold"></TextBlock>
-        <TextBox Name="input" Canvas.Left="693" Canvas.Top="515" BorderBrush="#FF19BA07" Foreground="#FF19BA07" BorderThickness="4,0,0,0" Background="#66000000" SelectionHighlightColorWhenNotFocused="Black" FocusVisualSecondaryBrush="#99000000" GotFocus="input_GotFocus" LostFocus="input_LostFocus" FontSize="20">
+        <TextBox Name="input" Canvas.Left="693" Canvas.Top="515" BorderBrush="#FF19BA07" Foreground="#FF19BA07" BorderThickness="4,0,0,0" Background="#66000000" SelectionHighlightColorWhenNotFocused="Black" FocusVisualSecondaryBrush="#99000000" GotFocus="input_GotFocus" FontSize="20" KeyDown="input_KeyDown" >
             <TextBox.Resources>
                 <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
                 <SolidColorBrush x:Key="TextControlForegroundFocused" Color="#FF19BA07"/>

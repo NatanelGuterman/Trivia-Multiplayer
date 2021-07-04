@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,16 +42,6 @@ namespace TriviaClient
                 input.Visibility = Visibility.Visible;
         }
 
-        private void createRoomButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateRoom));
-        }
-
-        private void joinRoomButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(JoinRoom));
-        }
-
         private void input_GotFocus(object sender, RoutedEventArgs e)
         {
             _dispatcherTimer.Stop();
@@ -56,6 +50,53 @@ namespace TriviaClient
         private void input_LostFocus(object sender, RoutedEventArgs e)
         {
             _dispatcherTimer.Start();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            usernameTextBlock.Text = (string)e.Parameter;
+        }
+
+        private void input_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                try
+                {
+                    switch (int.Parse(input.Text))
+                    {
+                        case 1:
+                            {
+                                Frame.Navigate(typeof(CreateRoom));
+                                break;
+                            }
+                        case 2:
+                            {
+                                Frame.Navigate(typeof(JoinRoom));
+                                break;
+                            }
+                        case 3:
+                            {
+                                //logout
+                                break;
+                            }
+                        default:
+                            {
+                                var dialog = new MessageDialog("Invalid input!, only 1, 2 or 3!.");
+                                dialog.Title = "Erroe";
+                                _ = dialog.ShowAsync();
+                                break;
+                            }
+                    }
+                }catch(Exception ex)
+                {
+                    var dialog = new MessageDialog("Invalid input!, only 1, 2 or 3!.");
+                    dialog.Title = "Error";
+                    _ = dialog.ShowAsync();
+                }
+
+            }
         }
     }
 }
