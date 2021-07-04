@@ -79,7 +79,7 @@ void RoomManager::addUser(int id, LoggedUser user)
 	this->m_rooms[id].addUser(user);
 }
 
-int RoomManager::generateRoomId()
+unsigned int RoomManager::generateRoomId()
 {
 	int num = std::prev(this->m_rooms.end())->first;
 	return num++;

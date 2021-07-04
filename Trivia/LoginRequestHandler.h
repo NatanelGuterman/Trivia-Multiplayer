@@ -1,7 +1,6 @@
 #pragma once
 #include "JsonRequestPacketDeserializer.h"
 #include "JsonResponsePacketSerializer.h"
-#include "LoginManager.h"
 #include "RequestHandlerFactory.h"
 #include <exception>
 

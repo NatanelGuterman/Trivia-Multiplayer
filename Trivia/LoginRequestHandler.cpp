@@ -33,7 +33,7 @@ RequestResult LoginRequestHandler::login(RequestInfo request)
         LoginRequest loginRequest = JsonRequestPacketDeserializer::deserializeLoginRequest(request.buffer);
         if (this->m_loginManager.login(loginRequest.username, loginRequest.password))
         {
-            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({OK_STATUS})), this->m_handlerFactory.createMenuRequestHandler() };
+            return { JsonResponsePacketSerializer::serializeResponse(LoginResponse({OK_STATUS})), this->m_handlerFactory.createMenuRequestHandler(new LoggedUser(loginRequest.username)) };
         }
         else
         {
@@ -54,7 +54,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo request)
         SignupRequest signupRequest = JsonRequestPacketDeserializer::deserializeSignupRequest(request.buffer);
         if (this->m_loginManager.signup(signupRequest.username, signupRequest.password, signupRequest.email))
         {
-            return { JsonResponsePacketSerializer::serializeResponse(SignupResponse({OK_STATUS})), this->m_handlerFactory.createMenuRequestHandler() };
+            return { JsonResponsePacketSerializer::serializeResponse(SignupResponse({OK_STATUS})), this->m_handlerFactory.createMenuRequestHandler(new LoggedUser(signupRequest.username)) };
         }
         else
         {

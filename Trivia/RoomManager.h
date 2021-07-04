@@ -13,7 +13,7 @@ public:
 	unsigned int getRoomState(int ID);
 	std::vector<RoomData> getRoomsData();
 	void addUser(int id, LoggedUser user);
-	int generateRoomId();
+	unsigned int generateRoomId();
 	std::map<int, Room> getRoomsMap();
 
 private:

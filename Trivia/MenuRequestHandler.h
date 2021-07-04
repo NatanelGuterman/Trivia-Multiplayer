@@ -1,5 +1,6 @@
 #pragma once
 #include "IRequestHandler.h"
+#include "RoomManager.h"
 #include "RequestHandlerFactory.h"
 
 class RequestHandlerFactory;
@@ -7,7 +8,7 @@ class RequestHandlerFactory;
 class MenuRequestHandler : public IRequestHandler
 {
 public:
-	MenuRequestHandler();
+	MenuRequestHandler(RequestHandlerFactory& handlerFactory, LoggedUser& user);
 	virtual bool isRequestRelevant(RequestInfo request);
 	virtual RequestResult handleRequest(RequestInfo request);
 private:
