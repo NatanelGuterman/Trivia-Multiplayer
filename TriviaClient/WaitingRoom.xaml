@@ -9,11 +9,50 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Canvas>
-        <TextBlock x:Name="roomNameTextBlock" Text="You are connected to room ______" Height="100" Width="900" FontSize="50" Canvas.Left="230" Canvas.Top="20"></TextBlock>
-        <TextBlock x:Name="infoBlock" Text="Maximum players: ___, Number of questions: ____, Time per question: ___ sec" Height="100" Width="1260" FontSize="37" Canvas.Left="20" Canvas.Top="90"></TextBlock>
-        <TextBlock Text="Current participentys are: " Height="100" Width="580" FontSize="50" Canvas.Left="362" Canvas.Top="180" Foreground="DarkMagenta"></TextBlock>
-        <Button x:Name="startGameButton" Content="Start game" Height="100" Width="270" FontSize="40" Canvas.Left="200" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
-        <Button x:Name="closeRoomButton" Content="Close room" Height="100" Width="270" FontSize="40" Canvas.Left="810" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
-        <Button x:Name="leaveRoomButton" Content="Leave room" Height="100" Width="270" FontSize="40" Canvas.Left="503" Canvas.Top="580" Background="{x:Null}" BorderBrush="DarkMagenta" CornerRadius="50,50,50,50" Visibility="Collapsed"></Button>
+        <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
+        <Rectangle Fill="Black" Height="642" Width="1136" Canvas.Left="83" Canvas.Top="39" RadiusX="50" RadiusY="50"></Rectangle>
+        <Rectangle Fill="White" Height="511" Width="1136" Canvas.Left="83" Canvas.Top="170" RadiusX="50" RadiusY="50"></Rectangle>
+        <Rectangle Fill="#FF9A9A9A" Height="434" Width="1088" Canvas.Left="102" Canvas.Top="207" RadiusX="50" RadiusY="50"></Rectangle>
+        <Rectangle Fill="#FF9A9A9A" Height="295" Width="609" Canvas.Left="553" Canvas.Top="323" RadiusX="10" RadiusY="10" Stroke="#FF343434" StrokeThickness="4"/>
+        <Rectangle Fill="#FF220031" Height="434" Width="413" Canvas.Top="207" RadiusX="50" RadiusY="50" Canvas.Left="102"/>
+        <TextBlock x:Name="roomNameTextBlock" Text=">> Room: " Height="100" Width="900"  Canvas.Left="118" Canvas.Top="71"  FontFamily="Century Gothic" FontWeight="Bold" FontSize="70" Foreground="Green"></TextBlock>
+        <TextBlock x:Name="DataTextBlockTitle" Text=">> Data:" Height="61" Width="204"  Canvas.Left="122" Canvas.Top="242"  FontFamily="JetBrains Mono" FontWeight="Bold" FontSize="40" Foreground="White"></TextBlock>
+        <TextBlock x:Name="MaximumPlayersTitle" Text=">> Maximum Players:" Height="61" Width="368"  Canvas.Left="118" Canvas.Top="326"  FontFamily="JetBrains Mono" FontWeight="Normal" FontSize="20" Foreground="White"></TextBlock>
+        <TextBlock x:Name="MaximumPlayersResult" Text="0" Height="61" Width="94"  Canvas.Left="373" Canvas.Top="311"  FontFamily="Century Gothic" FontWeight="Bold" FontSize="40" Foreground="#FFFFC300"></TextBlock>
+        <TextBlock x:Name="AmountofQuestionsTitle" Text=">> Amount of questions:" Height="61" Width="318"  Canvas.Left="118" Canvas.Top="389"  FontFamily="JetBrains Mono" FontWeight="Normal" FontSize="20" Foreground="White"></TextBlock>
+        <TextBlock x:Name="AmountofQuestionsResult" Text="0" Height="61" Width="94"  Canvas.Left="425" Canvas.Top="375"  FontFamily="Century Gothic" FontWeight="Bold" FontSize="40" Foreground="#FFFFC300"></TextBlock>
+
+        <TextBlock x:Name="TimePerQuestion" Text=">> Time Per Question:" Height="61" Width="318"  Canvas.Left="118" Canvas.Top="455"  FontFamily="JetBrains Mono" FontWeight="Normal" FontSize="20" Foreground="White"></TextBlock>
+        <TextBlock x:Name="TimePerQuestionResult" Text="0" Height="61" Width="94"  Canvas.Left="396" Canvas.Top="441"  FontFamily="Century Gothic" FontWeight="Bold" FontSize="40" Foreground="#FFFFC300"></TextBlock>
+
+        <Button x:Name="startGameButton" Content="Start game" Height="48" Width="372" FontSize="30" Canvas.Left="118" Canvas.Top="507" CornerRadius="20,20,20,20" Visibility="Collapsed" FontFamily="Century Gothic" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="leaveRoomButton" Content="Leave room" Height="62" Width="372" FontSize="30" Canvas.Left="122" Canvas.Top="556" CornerRadius="20,20,20,20" Visibility="Collapsed" FontFamily="Century Gothic" FontWeight="Bold" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="closeRoomButton" Content="Close room" Height="48" Width="372" FontSize="30" Canvas.Left="118" Canvas.Top="570" CornerRadius="20,20,20,20" Visibility="Collapsed" FontFamily="Century Gothic" FontWeight="Bold" Foreground="White" RenderTransformOrigin="0.549,-0.285">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#4875E6" Offset="0.1" />
+                    <GradientStop Color="#8B55E9" Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <TextBlock x:Name="UsersTitle" Text=">> Users Connected:" Height="61" Width="475"  Canvas.Left="553" Canvas.Top="242"  FontFamily="JetBrains Mono" FontWeight="Bold" FontSize="40" Foreground="BLack"></TextBlock>
+        <VariableSizedWrapGrid x:Name="usersTable" Height="280" Width="593" Canvas.Left="561" Canvas.Top="331">
+
+        </VariableSizedWrapGrid>
     </Canvas>
 </Page>

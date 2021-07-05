@@ -44,6 +44,7 @@ namespace TriviaClient
                     createdRoomData.timePerQuestion = int.Parse(timePerQuestionTextBlock.Text);
                     createdRoomData.id = 0;
                     createdRoomData.isActive = 1;
+                    Global.isAdmin = true;
                     Frame.Navigate(typeof(WaitingRoom), createdRoomData);
                 }
             }
