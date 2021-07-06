@@ -17,10 +17,19 @@ output: None.
 
 bool LoginManager::signup(std::string username, std::string password, std::string mail)
 {
+	std::vector<LoggedUser>::iterator iter = this->m_loggedUsers.begin();
 	if (!this->m_database->doesUserExist(username))
 	{
 		this->m_database->addNewUser(username, password, mail);
-		return true;
+		while (iter != this->m_loggedUsers.end() && (*iter).getUsername() != username)
+		{
+			iter++;
+		}
+		if (iter == this->m_loggedUsers.end())
+		{
+			this->m_loggedUsers.push_back(LoggedUser(username));
+			return true;
+		}
 	}
 	return false;
 }
@@ -64,7 +73,7 @@ bool LoginManager::logout(std::string username)
 	{
 		if ((*iter).getUsername() == username)
 		{
-			this->m_loggedUsers.erase(iter);
+			iter = this->m_loggedUsers.erase(iter);
 			flag = true;
 		}
 		else

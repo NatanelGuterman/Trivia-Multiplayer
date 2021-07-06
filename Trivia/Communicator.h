@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable:4996) 
 #include <WinSock2.h>
 #include <map>
 #include "LoginRequestHandler.h"

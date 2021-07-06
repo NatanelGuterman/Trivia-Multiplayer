@@ -81,7 +81,12 @@ void RoomManager::addUser(int id, LoggedUser user)
 
 unsigned int RoomManager::generateRoomId()
 {
-	int num = std::prev(this->m_rooms.end())->first;
+	if (this->m_rooms.size() == 0)
+		return 1;
+	std::map<int, Room>::iterator iter;
+	iter = this->m_rooms.end();
+	--iter;
+	int num = iter->first;
 	return num++;
 }
 
