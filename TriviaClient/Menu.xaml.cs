@@ -29,11 +29,11 @@ namespace TriviaClient
         public Menu()
         {
             this.InitializeComponent();
-            this.InitializeComponent();
             _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += dispatcherTimer_Tick;
             _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
             _dispatcherTimer.Start();
+            usernameTextBlock.Text = Global.username;
         }
 
         private void dispatcherTimer_Tick(object sender, object e)
@@ -54,12 +54,6 @@ namespace TriviaClient
             _dispatcherTimer.Start();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            usernameTextBlock.Text = (string)e.Parameter;
-        }
-
         private void input_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
@@ -70,13 +64,13 @@ namespace TriviaClient
                     {
                         case 1:
                             {
-                                Frame.Navigate(typeof(CreateRoom));
+                                Frame.Navigate(typeof(JoinRoom));
                                 break;
                             }
                         case 2:
                             {
 
-                                Frame.Navigate(typeof(JoinRoom));
+                                Frame.Navigate(typeof(CreateRoom));
                                 break;
                             }
                         case 3:

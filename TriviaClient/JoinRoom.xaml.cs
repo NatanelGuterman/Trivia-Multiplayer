@@ -20,19 +20,66 @@ namespace TriviaClient
 {
     public sealed partial class JoinRoom : Page
     {
+        const int CODE_JOIN_ROOM = 207, CODE_GET_ROOMS = 205;
+        List<RoomData> roomsData;
+        int chosenRoomId = 0;
+        RoomData chosenRoom;
         public JoinRoom()
         {
-            this.InitializeComponent(); 
+            this.InitializeComponent();
+            this.roomsData = new List<RoomData>();
+            showRooms();
         }
 
         private void refreshButton_Click(object sender, RoutedEventArgs e)
         {
-            // Call to the functions that will show on the screen the available rooms again.
+            showRooms();
         }
 
         private void moveTCreateRoomButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(CreateRoom));
         }
+
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.chosenRoom = ((RoomData)e.ClickedItem); ;
+            this.chosenRoomId = this.chosenRoom.id;
+        }
+
+        private void joinRoom_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SocketConnection.SendMessage(CODE_JOIN_ROOM, "{\"roomId\": " + this.chosenRoomId + "}");
+                if (Deserializer.StatusDeserializer(SocketConnection.ReadMessage()).status == 1)
+                {
+                    Global.isAdmin = false;
+                    Frame.Navigate(typeof(WaitingRoom), this.chosenRoom);
+                }
+                else
+                {
+                    SocketConnection.dialogUpdate("Error!", "Problem in joining room " + this.chosenRoomId + ".");
+                }
+            }
+            catch (Exception ex)
+            {
+                SocketConnection.dialogUpdate("Error!", ex.Message);
+            }
+        }
+
+        private void showRooms()
+        {
+            try
+            {
+                SocketConnection.SendMessage(CODE_GET_ROOMS, "{}");
+                this.roomsData = Deserializer.GetRoomDeserializer(SocketConnection.ReadMessage());
+            }
+            catch (Exception ex)
+            {
+                SocketConnection.dialogUpdate("Error!", ex.Message);
+            }
+        }
     }
+}
 }

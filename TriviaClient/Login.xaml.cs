@@ -45,9 +45,10 @@ namespace TriviaClient
             try
             {
                 SocketConnection.SendMessage(CODE_LOGIN, "{\"username\": \"" + usernameTextBox.Text + "\", \"password\": \"" + passwordTextBox.Text + "\"}");
-                if(Deserializer.StatusDeserializer(SocketConnection.ReadMessage()).status == 1)
+                Global.username = usernameTextBox.Text;
+                if (Deserializer.StatusDeserializer(SocketConnection.ReadMessage()).status == 1)
                 {
-                    Frame.Navigate(typeof(Menu), usernameTextBox.Text);
+                    Frame.Navigate(typeof(Menu));
                 }
                 else
                 {
