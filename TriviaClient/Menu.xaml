@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="TriviaClient.Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TriviaClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Canvas>
+        <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
+        <Rectangle Fill="Black" Height="671" Width="540" Canvas.Left="370" Canvas.Top="33" RadiusX="10" RadiusY="10"></Rectangle>
+        <TextBlock Text=">> Choose:" Canvas.Left="410" Canvas.Top="195" FontSize="50" FontFamily="JetBrains Mono" FontWeight="Bold" Height="54" Width="302" Foreground="Green"></TextBlock>
+        <TextBlock Text=">> Menu" Foreground="White" FontFamily="Century Gothic" FontSize="70" FontWeight="Bold" Canvas.Left="410" Canvas.Top="63"></TextBlock>
+        <Button x:Name="createRoomButton" Content=">> Create Room! - 2" Height="80" Width="370" FontSize="30" Canvas.Left="402" Canvas.Top="334" CornerRadius="25,25,25,25"  Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold">
+        </Button>
+        <Button x:Name="joinRoomButton" Content=">> Join Room! - 1" Height="80" Width="331" FontSize="30" Canvas.Left="398" Canvas.Top="280" CornerRadius="25,25,25,25" Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold">
+        </Button>
+        <Button x:Name="logoutButton" Content=">> Logout! - 3" Height="80" Width="334" FontSize="30" Canvas.Left="373" Canvas.Top="391" CornerRadius="25,25,25,25" Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold">
+        </Button>
+        <TextBlock x:Name="optionTitle" Text =">> Your option:" Height="47" Width="293" FontSize="30" Canvas.Left="410" Canvas.Top="514"  Foreground="Green" FontFamily="JetBrains Mono" FontWeight="Bold"></TextBlock>
+        <TextBox Name="input" Canvas.Left="693" Canvas.Top="515" BorderBrush="#FF19BA07" Foreground="#FF19BA07" BorderThickness="4,0,0,0" Background="#66000000" SelectionHighlightColorWhenNotFocused="Black" FocusVisualSecondaryBrush="#99000000" GotFocus="input_GotFocus" FontSize="20" KeyDown="input_KeyDown" >
+            <TextBox.Resources>
+                <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="Black" Opacity="0.2"/>
+                <SolidColorBrush x:Key="TextControlForegroundFocused" Color="#FF19BA07"/>
+                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="Black" Opacity="0"/>
+            </TextBox.Resources>
+        </TextBox>
+
+        <Image x:Name="defaultAvatar" Width="46" Height="62" Source="Assets/avatar.png" Canvas.Left="829" Canvas.Top="63"/>
+        <TextBlock x:Name="usernameTextBlock" Height="30" Width="100" FontSize="20" Text="user1" Canvas.Left="802" Canvas.Top="124" TextAlignment="Center" Foreground="White" FontFamily="JetBrains Mono"></TextBlock>
+    </Canvas>
+</Page>
