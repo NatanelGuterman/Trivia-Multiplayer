@@ -28,7 +28,7 @@ namespace TriviaClient
         {
             isConnected = true;
             client = new TcpClient();
-            serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 2620);
+            serverEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.3"), 2620);
             client.Connect(serverEndPoint);
             clientStream = client.GetStream();
         }

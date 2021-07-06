@@ -22,6 +22,8 @@ namespace TriviaClient
 {
     public sealed partial class WaitingRoom : Page
     {
+        const int GET_USERS_IN_ROOM_CODE = 206;
+        string[] playersInRoom;
         public WaitingRoom()
         {
             this.InitializeComponent();
@@ -34,7 +36,7 @@ namespace TriviaClient
             {
                 startGameButton.Visibility = Visibility.Visible;
                 closeRoomButton.Visibility = Visibility.Visible;
-                TextBlock userAdmin = new TextBlock() { Text = ">> "  + Global.username};
+                TextBlock userAdmin = new TextBlock() { Text = ">> " + Global.username };
 
                 userAdmin.FontFamily = new FontFamily("Jetbrains Mono");
                 userAdmin.FontWeight = FontWeights.Bold;
@@ -46,6 +48,25 @@ namespace TriviaClient
             else
             {
                 leaveRoomButton.Visibility = Visibility.Visible;
+                try
+                {
+                    SocketConnection.SendMessage(GET_USERS_IN_ROOM_CODE, "{}");
+                    this.playersInRoom = Deserializer.GetPlayersInRoom(SocketConnection.ReadMessage())._players;
+                    for (int i = 0; i < this.playersInRoom.Length; i++)
+                    {
+                        TextBlock user = new TextBlock() { Text = ">> " + this.playersInRoom[i] };
+                        user.FontFamily = new FontFamily("Jetbrains Mono");
+                        user.FontWeight = FontWeights.Bold;
+                        user.Foreground = new SolidColorBrush(Colors.Black);
+                        user.FontSize = 25;
+                        usersTable.Children.Add(user);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    SocketConnection.dialogUpdate("Error!", ex.Message);
+                }
             }
 
         }
@@ -57,7 +78,7 @@ namespace TriviaClient
             MaximumPlayersResult.Text = roomData.maxPlayers.ToString();
             AmountofQuestionsResult.Text = roomData.numOfQuestionsInGame.ToString();
             TimePerQuestionResult.Text = roomData.timePerQuestion.ToString();
-            roomNameTextBlock.Text = ">> Room: " + roomData.name; 
+            roomNameTextBlock.Text = ">> Room: " + roomData.name;
         }
     }
 }

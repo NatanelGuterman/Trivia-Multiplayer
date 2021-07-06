@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Canvas>
         <Image Source="Assets/wallpaper-login-singup.png" Height="808" Width="1538" Canvas.Left="-134" Canvas.Top="-36"></Image>
         <Rectangle Fill="Black" Height="642" Width="1136" Canvas.Left="83" Canvas.Top="39" RadiusX="50" RadiusY="50"></Rectangle>
@@ -15,6 +15,17 @@
         <TextBlock Text=">> Availble Rooms:" Canvas.Left="122" Canvas.Top="67" FontFamily="Century Gothic" FontWeight="Bold" FontSize="70" Foreground="Green"></TextBlock>
         <TextBlock Text="Want to create a brand new room? click" Height="60" Width="530" FontSize="20" Canvas.Left="303" Canvas.Top="647" FontFamily="JetBrains Mono"></TextBlock>
         <Button x:Name="moveTCreateRoomButton" Content="here."  Height="50" Width="112" FontSize="30" Canvas.Left="780" Canvas.Top="632" FocusVisualPrimaryBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" Foreground="#FF0E20EA" Click="moveTCreateRoomButton_Click" FontFamily="JetBrains Mono"></Button>
+        <Grid x:Name="myGrid" Height="400" Width="720" Canvas.Left="100" Canvas.Top="200">
+            <GridView ItemsSource="{x:Bind roomsData}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:RoomData">
+                        <StackPanel>
+                            <TextBlock FontSize="20" Text="{x:Bind name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
         <Button x:Name="joinRoom" Content="Join Room!" Height="80" Width="320" FontSize="40" Canvas.Left="845" Canvas.Top="485" CornerRadius="25,25,25,25" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,0">
